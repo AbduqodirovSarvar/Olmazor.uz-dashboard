@@ -15,3 +15,18 @@
   top: 0;
   z-index: 1;
 }
+
+::ng-deep .mat-badge-content {
+  background-color: #02793A !important;
+}
+
+.custom-button {
+  background-color: #02793A;
+  color: white; /* Ensure text is readable */
+}
+
+.custom-button:hover {
+  background-color: #025f1a; /* Optional: Change color on hover */
+}
+
+

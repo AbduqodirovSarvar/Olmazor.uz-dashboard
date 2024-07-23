@@ -1,1 +1,41 @@
-<p>message works!</p>
+<div class="body">
+  <div class="container">
+    <h2>Messages</h2>
+    <div class="header">
+      <div class="search-container">
+        <input type="text" placeholder="Search...">
+      </div>
+      <button class="add-employee-btn">Mark all as read</button>
+    </div>
+    <div class="table-responsive-xl">
+      <table>
+        <thead>
+            <tr>
+                <th><input type="checkbox"></th>
+                <th>Employee Name</th>
+                <th>Email Address</th>
+                <th>Department</th>
+                <th>Role</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let item of [1,2,3,4,5,6,7,8,9]">
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>Lindsey Stroud</td>
+                <td>lindsey.stroudgmail.com</td>
+                <td>Technology Department</td>
+                <td>Head of Technology</td>
+                <td>
+                    <div class="action-buttons">
+                        <button class="mark-read-btn"><img src="../../../assets/images/double-tick.svg" alt="Mark as read"></button>
+                        <button class="edit-btn"><img src="../../../assets/images/edit.svg" alt="Edit"></button>
+                        <button class="delete-btn"><img src="../../../assets/images/delete.svg" alt="Delete"></button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
