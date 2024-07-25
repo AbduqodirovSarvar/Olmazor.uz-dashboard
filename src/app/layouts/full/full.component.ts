@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
+import { HelperService } from 'src/app/services/helper.service';
 
 interface sidebarMenu {
   link: string;
@@ -14,11 +15,21 @@ interface sidebarMenu {
   templateUrl: './full.component.html',
   styleUrls: ['./full.component.scss']
 })
-export class FullComponent {
+export class FullComponent implements OnInit {
+
+  constructor(
+    private helperService: HelperService,
+    private breakpointObserver: BreakpointObserver
+  ) { }
+
+  ngOnInit(): void {
+    this.helperService.setLaguage(null);
+  }
 
   changeLanguage(language: string): void {
-
+    this.helperService.setLaguage(language);
   }
+
   search: boolean = false;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
@@ -27,8 +38,6 @@ export class FullComponent {
       shareReplay()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver) { }
-
   routerActive: string = "activelink";
 
   sidebarMenu: sidebarMenu[] = [
@@ -36,6 +45,11 @@ export class FullComponent {
       link: "/home",
       icon: "home",
       menu: "Dashboard",
+    },
+    {
+      link: "/about",
+      icon: "info",
+      menu: "About Company",
     },
     {
       link: "/home-slides",

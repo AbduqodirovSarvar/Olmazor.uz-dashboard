@@ -1,0 +1,84 @@
+<h2 mat-dialog-title>Update Home Post</h2>
+<form [formGroup]="homeSlideForm" (ngSubmit)="onSubmit()">
+  <mat-dialog-content>
+    <div>
+      <label for="file">Photo</label>
+      <img
+        src="../../../../assets/images/olmatech.jpg"
+        alt="Img"
+        style="width: 100px; cursor: pointer;"
+        (click)="fileInput.click()"
+      />
+      <input
+        hidden
+        #fileInput
+        type="file"
+        id="file"
+        (change)="onFileChange($event)"
+      >
+    </div>
+    <mat-form-field>
+      <mat-label>Title (Uz)</mat-label>
+      <input matInput formControlName="TitleUz" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Title (En)</mat-label>
+      <input matInput formControlName="TitleEn" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Title (Ru)</mat-label>
+      <input matInput formControlName="TitleRu" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Title (UzRu)</mat-label>
+      <input matInput formControlName="TitleUzRu" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Subtitle (Uz)</mat-label>
+      <input matInput formControlName="SubtitleUz" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Subtitle (En)</mat-label>
+      <input matInput formControlName="SubtitleEn" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Subtitle (Ru)</mat-label>
+      <input matInput formControlName="SubtitleRu" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Subtitle (UzRu)</mat-label>
+      <input matInput formControlName="SubtitleUzRu" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Description (Uz)</mat-label>
+      <textarea matInput formControlName="DescriptionUz"></textarea>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Description (En)</mat-label>
+      <textarea matInput formControlName="DescriptionEn"></textarea>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Description (Ru)</mat-label>
+      <textarea matInput formControlName="DescriptionRu"></textarea>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Description (UzRu)</mat-label>
+      <textarea matInput formControlName="DescriptionUzRu"></textarea>
+    </mat-form-field>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button type="submit" [disabled]="homeSlideForm.invalid" cdkFocusInitial>Save</button>
+  </mat-dialog-actions>
+</form>

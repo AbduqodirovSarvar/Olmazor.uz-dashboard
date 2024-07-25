@@ -11,6 +11,7 @@ import { UserComponent } from './components/user/user.component';
 import { ClientComponent } from './components/client/client.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { MessageComponent } from './components/message/message.component';
+import { AboutComponent } from './components/about/about.component';
 
 const routes: Routes = [
   {
@@ -19,6 +20,7 @@ const routes: Routes = [
     children: [
       {path:"", redirectTo:"/home", pathMatch:"full"},
       {path: "home", component: DashboardComponent},
+      {path: "about", component: AboutComponent},
       {path: "home-slides", component: HomeSlideComponent},
       {path: "services", component:ServiceComponent},
       {path: "projects", component: ProjectComponent},
