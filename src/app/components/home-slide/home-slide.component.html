@@ -1,9 +1,9 @@
 <div class="body">
   <div class="container">
     <h1>Home Slides</h1>
-    <div class="header">
+    <div class="header" [formGroup]="homeSlideForm">
         <div class="search-container">
-          <input type="text" placeholder="Search...">
+          <input type="text" placeholder="Search..." formControlName="query">
       </div>
         <button class="add-button" (click)="onCreateNewItem()">+ Create New</button>
     </div>
@@ -15,7 +15,7 @@
                     <a (click)="deletePost(item.id)">Delete</a>
                 </div>
         <div class="status">
-            <img src="../../../assets/images/olmatech.jpg" alt="Truck">
+            <img [src]="getPhoto(item)" alt="Truck">
         </div>
         <div class="delivery-info">
             <h2>{{item.titleEn}}</h2>

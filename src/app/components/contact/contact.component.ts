@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { EnumType } from 'src/app/services/api.service';
 
 export interface ContactResponse {
   name: string; // Assuming name should be a string based on context
@@ -35,8 +34,10 @@ export interface GetAllContactQuery {
   link?: string;
 }
 
-
-
+export interface EnumType{
+  id: number;
+  name: string;
+}
 
 @Component({
   selector: 'app-contact',

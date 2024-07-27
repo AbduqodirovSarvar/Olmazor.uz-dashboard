@@ -81,14 +81,14 @@ export class TeamService {
     return this.http.get<TeamResponse>(this.baseTeamUrl, { params });
   }
 
-  createTeamMember(data: CreateTeamRequest): Observable<any> {
+  createTeamMember(data: CreateTeamRequest): Observable<TeamResponse> {
     const formData = new FormData();
     formData.append('Firstname', data.Firstname);
     if (data.FirstnameRu) formData.append('FirstnameRu', data.FirstnameRu);
     formData.append('Lastname', data.Lastname);
     if (data.LastnameRu) formData.append('LastnameRu', data.LastnameRu);
     if (data.Phone) formData.append('Phone', data.Phone);
-    if (data.Photo) formData.append('Photo', data.Photo);
+    if (data.Photo) formData.append('Photo', data.Photo, data.Photo.name); // Ensure file name is included
     if (data.PositionUz) formData.append('PositionUz', data.PositionUz);
     if (data.PositionEn) formData.append('PositionEn', data.PositionEn);
     if (data.PositionRu) formData.append('PositionRu', data.PositionRu);
@@ -98,10 +98,10 @@ export class TeamService {
     if (data.Twitter) formData.append('Twitter', data.Twitter);
     if (data.Email) formData.append('Email', data.Email);
 
-    return this.http.post<any>(this.baseTeamUrl, formData);
+    return this.http.post<TeamResponse>(this.baseTeamUrl, formData);
   }
 
-  updateTeamMember(data: UpdateTeamRequest): Observable<any> {
+  updateTeamMember(data: UpdateTeamRequest): Observable<TeamResponse> {
     const formData = new FormData();
     formData.append('Id', data.Id);
     if (data.Firstname) formData.append('Firstname', data.Firstname);
@@ -119,7 +119,7 @@ export class TeamService {
     if (data.Twitter) formData.append('Twitter', data.Twitter);
     if (data.Email) formData.append('Email', data.Email);
 
-    return this.http.put<any>(this.baseTeamUrl, formData);
+    return this.http.put<TeamResponse>(this.baseTeamUrl, formData);
   }
 
   deleteTeamMember(request: DeleteTeamRequest): Observable<boolean> {
@@ -129,7 +129,7 @@ export class TeamService {
     });
   }
 
-  getAllTeamMembers(): Observable<ServiceResponse> {
-    return this.http.get<ServiceResponse>(`${this.baseTeamUrl}/all`);
+  getAllTeamMembers(): Observable<TeamResponse[]> {
+    return this.http.get<TeamResponse[]>(`${this.baseTeamUrl}/all`);
   }
 }

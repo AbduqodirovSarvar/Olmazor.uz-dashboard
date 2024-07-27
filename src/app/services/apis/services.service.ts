@@ -27,7 +27,6 @@ export interface CreateServiceRequest{
   descriptionEn: string;
   descriptionRu: string;
   descriptionUzRu: string;
-  createdBy: string; // UUID of the user creating the service
 }
 
 export interface UpdateServiceRequest {

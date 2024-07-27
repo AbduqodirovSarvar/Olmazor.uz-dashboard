@@ -1,23 +1,29 @@
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { HelperService } from './helper.service';
+import { Router } from '@angular/router';
+import { ErrorService } from './error.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpConfigInterceptorService implements HttpInterceptor {
 
-  private readonly token: string = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImE0OWIzOWE3LTcwOTMtNDU2OS1iN2I0LWM5MGM4ZTk0ZThlOCIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6WyJOb25lIiwiU3VwZXJBZG1pbiIsIkFkbWluIl0sImp0aSI6IjZhYzlmNzA0LTMxYWMtNDYzMC05NjA3LTYxY2RlNjZlZTMzMCIsIm5hbWUiOiI3LzI1LzIwMjQgNToxODo1MyBBTSIsImV4cCI6MTcyMTk3MTEzMywiaXNzIjoiaHR0cHM6Ly9PbG1hdGVjaC51eiIsImF1ZCI6Imh0dHBzOi8vT2xtYXRlY2gudXoifQ.QHoAERpW_U6JU36l0aagmAVeofK58G2dBp2JHJEA45E';
-
-  constructor() { }
+  constructor(private helperService: HelperService, private errorService: ErrorService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const authReq = req.clone({
       setHeaders: {
-        Authorization: `Bearer ${this.token}`
+        Authorization: `Bearer ${this.helperService.getAccessToken()}`
       }
     });
 
-    return next.handle(authReq);
+    return next.handle(authReq).pipe(
+      catchError((error: HttpErrorResponse) => {
+        return this.errorService.handleError(error);
+      })
+    );
   }
 }

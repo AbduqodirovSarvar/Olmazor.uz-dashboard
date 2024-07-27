@@ -32,9 +32,10 @@ const routes: Routes = [
       {path: "users", component: UserComponent},
     ]
   },
-
-  {path:"", redirectTo:"/home", pathMatch:"full"},
-  {path:"**", redirectTo:"/home", pathMatch:"full"},
+  {
+    path: "auth",
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+  }
 ];
 
 @NgModule({

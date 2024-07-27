@@ -30,6 +30,10 @@ export class FullComponent implements OnInit {
     this.helperService.setLaguage(language);
   }
 
+  logOut(){
+    this.helperService.removeAccessToken();
+    this.helperService.redirectToLoginPage();
+  }
   search: boolean = false;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)

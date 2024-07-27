@@ -1,0 +1,72 @@
+<h2 mat-dialog-title>Create Home Post</h2>
+<form [formGroup]="createServiceForm" (ngSubmit)="onSubmit()">
+  <mat-dialog-content>
+    <mat-form-field>
+      <mat-label>Name (Uz)</mat-label>
+      <input matInput formControlName="NameUz" required />
+      <mat-error>
+        Name (Uz) is required.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Name (En)</mat-label>
+      <input matInput formControlName="NameEn" required />
+      <mat-error>
+        Name (En) is required.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Name (Ru)</mat-label>
+      <input matInput formControlName="NameRu" required />
+      <mat-error>
+        Name (Ru) is required.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Name (UzRu)</mat-label>
+      <input matInput formControlName="NameUzRu" required />
+      <mat-error>
+        Name (UzRu) is required.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Description (Uz)</mat-label>
+      <textarea matInput formControlName="DescriptionUz" required></textarea>
+      <mat-error>
+        Description (Uz) is required.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Description (En)</mat-label>
+      <textarea matInput formControlName="DescriptionEn" required></textarea>
+      <mat-error>
+        Description (En) is required.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Description (Ru)</mat-label>
+      <textarea matInput formControlName="DescriptionRu" required></textarea>
+      <mat-error>
+        Description (Ru) is required.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Description (UzRu)</mat-label>
+      <textarea matInput formControlName="DescriptionUzRu" required></textarea>
+      <mat-error>
+        Description (UzRu) is required.
+      </mat-error>
+    </mat-form-field>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button type="submit" [disabled]="createServiceForm.invalid" cdkFocusInitial>Add</button>
+  </mat-dialog-actions>
+</form>

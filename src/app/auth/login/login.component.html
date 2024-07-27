@@ -1,1 +1,22 @@
-<p>login works!</p>
+<div class="body">
+  <section class="container">
+    <div class="login-container">
+        <div class="circle circle-one"></div>
+        <div class="form-container" >
+            <h1 class="opacity">LOGIN</h1>
+            <form [formGroup]="loginForm">
+                <input type="text" formControlName="email" placeholder="Email" />
+                <input type="password" formControlName="password" placeholder="Password" />
+                <mat-spinner *ngIf="proccessing"></mat-spinner>
+                <button class="opacity" (click)="onSubmit()">SUBMIT</button>
+            </form>
+            <div class="register-forget opacity">
+              <!-- <a (click)="redirectToRegister()">REGISTER</a> -->
+              <a (click)="redirectToReset()">FORGOT PASSWORD</a>
+            </div>
+        </div>
+        <div class="circle circle-two"></div>
+    </div>
+    <div class="theme-btn-container"></div>
+</section>
+</div>

@@ -1,0 +1,79 @@
+<h2 mat-dialog-title>Create Team Member</h2>
+<form [formGroup]="teamForm" (ngSubmit)="onSubmit()">
+  <mat-dialog-content>
+    <mat-form-field>
+      <mat-label>Firstname</mat-label>
+      <input matInput formControlName="Firstname" required />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Firstname (Ru)</mat-label>
+      <input matInput formControlName="FirstnameRu" required />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Lastname</mat-label>
+      <input matInput formControlName="Lastname" required />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Lastname (Ru)</mat-label>
+      <input matInput formControlName="LastnameRu" required />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Phone</mat-label>
+      <input matInput formControlName="Phone" required />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Position (Uz)</mat-label>
+      <input matInput formControlName="PositionUz" required />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Position (En)</mat-label>
+      <input matInput formControlName="PositionEn" required />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Position (Ru)</mat-label>
+      <input matInput formControlName="PositionRu" required />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Position (UzRu)</mat-label>
+      <input matInput formControlName="PositionUzRu" required />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Telegram</mat-label>
+      <input matInput formControlName="Telegram" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Instagram</mat-label>
+      <input matInput formControlName="Instagram" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Twitter</mat-label>
+      <input matInput formControlName="Twitter"/>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="Email" />
+    </mat-form-field>
+
+    <div>
+      <label for="file">Photo</label>
+      <button id="choose-file-button" type="button" mat-raised-button (click)="fileInput.click()">{{ selectedFileName || 'Choose File' }}</button>
+      <input hidden (change)="onFileChange($event)" #fileInput type="file" id="file" required>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button type="submit" [disabled]="teamForm.invalid" cdkFocusInitial>Add</button>
+  </mat-dialog-actions>
+</form>

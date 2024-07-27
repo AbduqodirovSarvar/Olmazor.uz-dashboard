@@ -1,7 +1,7 @@
 import { Component, NgModule, OnInit } from '@angular/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
@@ -33,14 +33,25 @@ export class HomeSlideComponent implements OnInit {
 
   items: HomePostResponse[] = [];
   filteredItems: HomePostResponse[] = [];
+  searchtext: string = '';
+  homeSlideForm: FormGroup;
 
   constructor(
     private homepostService: HomepostService,
     private dialog: MatDialog
-  ) { }
+  ) {
+    this.homeSlideForm = new FormGroup({
+      query: new FormControl(''),
+    });
+
+   }
 
   ngOnInit(): void {
-    this.loadHomePosts();
+    this.loadHomePosts(null);
+    this.homeSlideForm.get('query')?.valueChanges.subscribe(searchText => {
+      console.log(searchText);
+      this.loadHomePosts(searchText);
+    });
   }
 
   onCreateNewItem() {
@@ -83,12 +94,20 @@ export class HomeSlideComponent implements OnInit {
   }
 
 
-  loadHomePosts(): void {
+  loadHomePosts(searchText?: string | null): void {
     this.homepostService.getAllHomePosts().subscribe(
       {
         next: (data) => {
-          this.items = data;
-          this.filteredItems = data;
+          if(searchText) {
+            console.log('Search');
+            this.onSearch(searchText);
+            this.items = this.filteredItems;
+          }
+          else {
+            console.log(data);
+            this.items = data;
+            this.filteredItems = data;
+          }
         },
         error: (error) => {
           console.error('Error:', error);
@@ -97,16 +116,25 @@ export class HomeSlideComponent implements OnInit {
     );
   }
 
+  getPhoto(item: HomePostResponse): string {
+    return `http://45.130.148.137:8080/api/File/${item.photo}`;
+  }
+
   onSearch(query: string): void {
+    const lowerQuery = query.toLowerCase();
     this.filteredItems = this.items.filter(item =>
-      item.titleUz.toLowerCase().includes(query.toLowerCase()) ||
-      item.titleEn.toLowerCase().includes(query.toLowerCase()) ||
-      item.titleRu.toLowerCase().includes(query.toLowerCase()) ||
-      item.titleUzRu.toLowerCase().includes(query.toLowerCase()) ||
-      item.descriptionUz.toLowerCase().includes(query.toLowerCase()) ||
-      item.descriptionEn.toLowerCase().includes(query.toLowerCase()) ||
-      item.descriptionRu.toLowerCase().includes(query.toLowerCase()) ||
-      item.descriptionUzRu.toLowerCase().includes(query.toLowerCase())
+      (item.titleUz && item.titleUz.toLowerCase().includes(lowerQuery)) ||
+      (item.titleEn && item.titleEn.toLowerCase().includes(lowerQuery)) ||
+      (item.titleRu && item.titleRu.toLowerCase().includes(lowerQuery)) ||
+      (item.titleUzRu && item.titleUzRu.toLowerCase().includes(lowerQuery)) ||
+      (item.subtitleUz && item.subtitleUz.toLowerCase().includes(lowerQuery)) ||
+      (item.subtitleEn && item.subtitleEn.toLowerCase().includes(lowerQuery)) ||
+      (item.subtitleRu && item.subtitleRu.toLowerCase().includes(lowerQuery)) ||
+      (item.subtitleUzRu && item.subtitleUzRu.toLowerCase().includes(lowerQuery)) ||
+      (item.descriptionUz && item.descriptionUz.toLowerCase().includes(lowerQuery)) ||
+      (item.descriptionEn && item.descriptionEn.toLowerCase().includes(lowerQuery)) ||
+      (item.descriptionRu && item.descriptionRu.toLowerCase().includes(lowerQuery)) ||
+      (item.descriptionUzRu && item.descriptionUzRu.toLowerCase().includes(lowerQuery))
     );
   }
 }
