@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { UserResponse } from './user.service';
 
 export interface LoginRequest {
   email: string;
@@ -9,36 +10,7 @@ export interface LoginRequest {
 
 export interface LoginResponse {
   accessToken: string;
-  user: {
-    id: string;
-    email: string;
-    firstname: {
-      en: string;
-      uz: string;
-      ru: string;
-      uzru: string;
-    };
-    lastname: {
-      en: string;
-      uz: string;
-      ru: string;
-      uzru: string;
-    };
-    phone: string;
-    gender: {
-      id: number;
-      name: string;
-    };
-    photo: string | null;
-    createdAt: string;
-    createdBy: string;
-    updatedAt: string;
-    updatedBy: string;
-    userrole: {
-      id: number;
-      name: string;
-    };
-  };
+  user: UserResponse;
 }
 
 @Injectable({

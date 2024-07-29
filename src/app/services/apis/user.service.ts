@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
+import { Observable, Subject, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { ErrorService } from '../error.service';
@@ -80,6 +80,15 @@ export class UserService {
     const httpParams = new HttpParams().set('Id', userId);
     return this.http.get<UserResponse>(`${this.apiUrl}`, { params: httpParams })
       .pipe(
+        catchError(error => {
+          return this.errorService.handleError(error);
+        })
+      );
+  }
+
+  getMe(): Observable<UserResponse> {
+    return this.http.get<UserResponse>(`${this.apiUrl}/me`)
+     .pipe(
         catchError(error => {
           return this.errorService.handleError(error);
         })

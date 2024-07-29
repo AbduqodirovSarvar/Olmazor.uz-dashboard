@@ -19,7 +19,7 @@ export class FullComponent implements OnInit {
 
   constructor(
     private helperService: HelperService,
-    private breakpointObserver: BreakpointObserver
+    private breakpointObserver: BreakpointObserver,
   ) { }
 
   ngOnInit(): void {
