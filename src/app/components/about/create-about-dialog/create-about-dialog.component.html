@@ -1,0 +1,99 @@
+<h2 mat-dialog-title>Create About</h2>
+<form [formGroup]="aboutForm" (ngSubmit)="onSubmit()">
+  <mat-dialog-content>
+    <mat-form-field>
+      <mat-label>Address (Uz)</mat-label>
+      <input matInput formControlName="AddressUz" required />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Address (En)</mat-label>
+      <input matInput formControlName="AddressEn" required />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Address (Ru)</mat-label>
+      <input matInput formControlName="AddressRu" required />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Address (UzRu)</mat-label>
+      <input matInput formControlName="AddressUzRu" required />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Title (Uz)</mat-label>
+      <input matInput formControlName="TitleUz" required />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Title (En)</mat-label>
+      <input matInput formControlName="TitleEn" required />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Title (Ru)</mat-label>
+      <input matInput formControlName="TitleRu" required />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Title (UzRu)</mat-label>
+      <input matInput formControlName="TitleUzRu" required />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Description (Uz)</mat-label>
+      <textarea matInput formControlName="DescriptionUz" required></textarea>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Description (En)</mat-label>
+      <textarea matInput formControlName="DescriptionEn" required></textarea>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Description (Ru)</mat-label>
+      <textarea matInput formControlName="DescriptionRu" required></textarea>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Description (UzRu)</mat-label>
+      <textarea matInput formControlName="DescriptionUzRu" required></textarea>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Description Footer (Uz)</mat-label>
+      <textarea matInput formControlName="DescriptionFooterUz" required></textarea>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Description Footer (En)</mat-label>
+      <textarea matInput formControlName="DescriptionFooterEn" required></textarea>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Description Footer (Ru)</mat-label>
+      <textarea matInput formControlName="DescriptionFooterRu" required></textarea>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Description Footer (UzRu)</mat-label>
+      <textarea matInput formControlName="DescriptionFooterUzRu" required></textarea>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Experience</mat-label>
+      <input matInput formControlName="Experience" required type="number" />
+    </mat-form-field>
+
+    <div>
+      <label for="file">Photo</label>
+      <button id="choose-file-button" type="button" mat-raised-button (click)="fileInput.click()">{{ selectedFileName || 'Choose File' }}</button>
+      <input hidden (change)="onFileChange($event)" #fileInput type="file" id="file" required>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button type="submit" [disabled]="aboutForm.invalid" cdkFocusInitial>Add</button>
+  </mat-dialog-actions>
+</form>

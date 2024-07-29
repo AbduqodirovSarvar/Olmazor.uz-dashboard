@@ -5,6 +5,8 @@ import { DeleteUserRequest, UserResponse, UserService } from 'src/app/services/a
 import { CreateUserDialogComponent } from './create-user-dialog/create-user-dialog.component';
 import { UpdateUserDialogComponent } from './update-user-dialog/update-user-dialog.component';
 import { CommonModule } from '@angular/common';
+import { HelperService } from 'src/app/services/helper.service';
+import { BaseApiService, EnumResponse } from 'src/app/services/apis/base.api.service';
 
 @Component({
   selector: 'app-user',
@@ -21,21 +23,57 @@ export class UserComponent implements OnInit {
   filteredUsers: UserResponse[] = [];
   searchtext: string = '';
   userForm: FormGroup;
+  userRoles: EnumResponse[] = [];
+  genders: EnumResponse[] = [];
 
   constructor(
     private userService: UserService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private baseApiService: BaseApiService
   ) {
     this.userForm = new FormGroup({
       query: new FormControl(''),
+    });
+
+    this.baseApiService.getUserRoles().subscribe({
+      next: (roles: EnumResponse[]) => {
+        this.userRoles = roles;
+      },
+      error: (error) => {
+        console.error('Error:', error);
+        return 'Unknown';
+      }
+    });
+
+    this.baseApiService.getGenders().subscribe({
+      next: (genders: EnumResponse[]) => {
+        this.genders = genders;
+      },
+      error: (error) => {
+        console.error('Error:', error);
+        return 'Unknown';
+      }
     });
   }
 
   ngOnInit(): void {
     this.loadUsers(null);
-    this.userForm.get('query')?.valueChanges.subscribe(searchText => {
+    this.userForm.get('query')?.valueChanges.subscribe({
+      next: (searchText: string) => {
       this.loadUsers(searchText);
+    },
+      error: (error) => {
+        console.error('Error:', error);
+    }
     });
+  }
+
+  getUserRoleName(id: number): string {
+    return this.userRoles.find(role => role.id === id)?.name ?? "Undefined";
+  }
+
+  getGenderName(id: number): string {
+    return this.genders.find(gender => gender.id === id)?.name?? "Undefined";
   }
 
   onCreateNewUser() {

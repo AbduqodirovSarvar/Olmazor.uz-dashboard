@@ -76,8 +76,8 @@ export class UserService {
     private errorService: ErrorService
   ) { }
 
-  getUser(params: GetUserParams): Observable<UserResponse> {
-    const httpParams = new HttpParams().set('Id', params.Id);
+  getUser(userId: string): Observable<UserResponse> {
+    const httpParams = new HttpParams().set('Id', userId);
     return this.http.get<UserResponse>(`${this.apiUrl}`, { params: httpParams })
       .pipe(
         catchError(error => {

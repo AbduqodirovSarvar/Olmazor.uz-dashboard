@@ -42,7 +42,7 @@ export interface UpdateAboutRequest {
   DescriptionFooterRu?: string;
   DescriptionFooterUzRu?: string;
   Experience?: number;
-  Photo?: File; // Use File type for handling file uploads
+  Photo?: File;
 }
 
 export interface DeleteAboutRequest {
@@ -75,10 +75,10 @@ export interface AboutResponse {
   updatedAt: string;
 }
 
-
 @Injectable({
   providedIn: 'root'
 })
+
 export class AboutService {
   private baseAboutUrl: string = 'http://45.130.148.137:8080/api/About';
 

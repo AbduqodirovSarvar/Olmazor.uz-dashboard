@@ -1,88 +1,95 @@
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-
-export interface ContactResponse {
-  name: string; // Assuming name should be a string based on context
-  link: string; // Represents a phone number or a URL
-  createdBy: string; // UUID of the user who created the record
-  createdAt: string; // ISO 8601 date string
-  updatedBy: string; // UUID of the user who last updated the record
-  updatedAt: string; // ISO 8601 date string
-  id: string; // UUID of the contact
-}
-
-export interface CreateContactRequest {
-  name: string; // Name of the contact
-  link: string; // Phone number or URL
-}
-
-export interface UpdateContactRequest {
-  id: string; // Unique identifier for the contact
-  name?: string; // Name of the contact (optional for updates)
-  link?: string; // Phone number or URL (optional for updates)
-}
-
-export interface DeleteContactRequest {
-  id: string; // Unique identifier for the contact to be deleted
-}
-
-export interface GetAllContactQuery {
-  page?: number;
-  pageSize?: number;
-  search?: string;
-  name?: string;
-  link?: string;
-}
-
-export interface EnumType{
-  id: number;
-  name: string;
-}
+import { ContactService, ContactResponse, CreateContactRequest } from 'src/app/services/apis/contact.service';
+import { BaseApiService, EnumResponse } from 'src/app/services/apis/base.api.service';
+import { UpdateContactDialogComponent } from './update-contact-dialog/update-contact-dialog.component';
 
 @Component({
   selector: 'app-contact',
   standalone: true,
   imports: [
+    ReactiveFormsModule,
     CommonModule
   ],
   templateUrl: './contact.component.html',
-  styleUrl: './contact.component.scss'
+  styleUrls: ['./contact.component.scss']
 })
-export class ContactComponent {
+export class ContactComponent implements OnInit {
+  contactTypes: EnumResponse[] = [];
+  contacts: ContactResponse[] = [];
+  contactForm: FormGroup;
 
-contactTypes: EnumType[] = [
-  {
-    id: 1,
-    name: "Phone"
-  },
-  {
-    id: 2,
-    name: "Email"
-  },
-  {
-    id: 3,
-    name: "Telegram"
-  },
-  {
-    id: 4,
-    name: "Instagram"
-  },
-  {
-    id: 5,
-    name: "Facebook"
-  },
-  {
-    id: 6,
-    name: "Twitter"
-  },
-  {
-    id: 7,
-    name: "Github"
-  },
-  {
-    id: 8,
-    name: "Website"
+  constructor(
+    private baseApiService: BaseApiService,
+    private contactService: ContactService,
+    private dialog: MatDialog
+  ) {
+    this.contactForm = new FormGroup({
+      query: new FormControl('')
+    });
+
+    this.baseApiService.getCommunications().subscribe({
+      next: (types: EnumResponse[]) => {
+        this.contactTypes = types;
+      },
+      error: (error) => {
+        console.error('Error fetching contact types:', error);
+      }
+    });
   }
-];
 
+  ngOnInit(): void {
+    this.loadContacts();
+    this.contactForm.get('query')?.valueChanges.subscribe({
+      next: (searchText: string) => this.filterContacts(searchText),
+      error: (error) => console.error('Error:', error)
+    });
+  }
+
+  loadContacts(): void {
+    this.contactService.getAllContacts().subscribe({
+      next: (contacts: ContactResponse[]) => {
+        this.contacts = [];
+        const existingContacts = contacts;
+
+        this.contactTypes.forEach(item => {
+          const existingContact = existingContacts.find(x => x.name === item.id);
+          if (existingContact) {
+            this.contacts.push(existingContact);
+          } else {
+            const createContactRequest: CreateContactRequest = {
+              name: item.id,
+              link: 'http://localhost'
+            };
+            this.contactService.createContact(createContactRequest).subscribe({
+              next: (createdContact: ContactResponse) => this.contacts.push(createdContact),
+              error: (error) => console.error('Error creating contact:', error)
+            });
+          }
+        });
+      },
+      error: (error) => console.error('Error fetching contacts:', error)
+    });
+  }
+
+  filterContacts(query: string): void {
+    const lowerQuery = query.toLowerCase();
+    this.contacts = this.contacts.filter(contact =>
+      (contact.link && contact.link.toLowerCase().includes(lowerQuery))
+    );
+  }
+
+  getEnumName(id: number): string | undefined {
+    return this.contactTypes.find(x => x.id === id)?.name;
+  }
+
+  onEditContact(contactId: string): void {
+    this.dialog.open(UpdateContactDialogComponent, { data: { contactId: contactId } }).afterClosed().subscribe({
+      next: () => this.loadContacts(),
+      error: (error) => console.error('Error:', error)
+    });
+    console.log('Edit contact:', contactId);
+  }
 }

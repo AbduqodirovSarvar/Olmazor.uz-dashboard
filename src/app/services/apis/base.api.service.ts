@@ -50,4 +50,8 @@ export class BaseApiService {
       })
     );
   }
+
+  getPhoto(photoName: string): string {
+    return `http://45.130.148.137:8080/api/File/${photoName}`;
+  }
 }

@@ -100,12 +100,10 @@ export class ServiceComponent  implements OnInit {
       {
         next: (data) => {
           if(searchText) {
-            console.log('Search');
             this.onSearch(searchText);
             this.items = this.filteredItems;
           }
           else {
-            console.log(data);
             this.items = data;
             this.filteredItems = data;
           }

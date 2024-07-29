@@ -44,7 +44,7 @@ export class MessageService {
   }
 
   updateMessage(updateCommand: UpdateMessageRequest): Observable<MessageResponse> {
-    return this.http.put<MessageResponse>(`${this.baseMessageUrl}`, updateCommand);
+    return this.http.put<MessageResponse>(`${this.baseMessageUrl}`, JSON.stringify(updateCommand) );
   }
 
   deleteMessage(deleteCommand: DeleteMessageRequest): Observable<boolean> {

@@ -55,8 +55,6 @@ export class UpdateServiceDialogComponent  {
   ngOnInit(): void {
     this.service.getService(this.data.serviceId).subscribe({
       next: (data) => {
-        console.log("Post loaded: ", data); // Log the loaded post object
-
         // Ensure the object has the expected keys and values
         if (data) {
           this.updateServiceForm.patchValue({

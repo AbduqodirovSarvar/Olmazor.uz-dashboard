@@ -118,5 +118,4 @@ export class CreateDialogComponent implements OnInit {
       this.selectedFileName = file.name;
     }
   }
-
 }

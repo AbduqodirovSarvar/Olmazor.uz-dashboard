@@ -1,39 +1,42 @@
 <div class="body">
   <div class="container">
     <h2>Messages</h2>
-    <div class="header">
+    <div class="header" [formGroup]="messageForm">
       <div class="search-container">
-        <input type="text" placeholder="Search...">
+        <input type="text" placeholder="Search..." formControlName="query">
       </div>
-      <button class="add-employee-btn">Mark all as read</button>
+      <button class="add-employee-btn" (click)="markAllAsRead()">Mark all as read</button>
     </div>
     <div class="table-responsive-xl">
       <table>
         <thead>
-            <tr>
-                <th><input type="checkbox"></th>
-                <th>Employee Name</th>
-                <th>Email Address</th>
-                <th>Text</th>
-                <th>Date</th>
-                <th>Action</th>
-            </tr>
+          <tr>
+            <th>Fullname</th>
+            <th>Email</th>
+            <th>Subject</th>
+            <th>Message</th>
+            <th>Date</th>
+            <th>Action</th>
+          </tr>
         </thead>
-        <tbody *ngFor="let item of [1,2,3,4,5,6,7,8,9]">
-            <tr>
-                <td><input type="checkbox"></td>
-                <td>Lindsey Stroud</td>
-                <td>someonegmail.com</td>
-                <td>Some kind of problems</td>
-                <td>23/07/2024</td>
-                <td>
-                    <div class="action-buttons">
-                        <button class="mark-read-btn"><img src="../../../assets/images/double-tick.svg" alt="Mark as read"></button>
-                        <button class="edit-btn"><img src="../../../assets/images/edit.svg" alt="Edit"></button>
-                        <button class="delete-btn"><img src="../../../assets/images/delete.svg" alt="Delete"></button>
-                    </div>
-                </td>
-            </tr>
+        <tbody>
+          <tr *ngFor="let item of filteredItems">
+            <td>{{item.name}}</td>
+            <td>{{item.email}}</td>
+            <td>{{item.subject}}</td>
+            <td>{{item.text}}</td>
+            <td>{{item.createdAt | date:'short'}}</td>
+            <td>
+              <div class="action-buttons">
+                <button class="mark-read-btn" (click)="markAsRead(item.id)">
+                  <img src="../../../assets/images/double-tick.svg" alt="Mark as read">
+                </button>
+                <button class="delete-btn" (click)="deleteMessage(item.id)">
+                  <img src="../../../assets/images/delete.svg" alt="Delete">
+                </button>
+              </div>
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>

@@ -20,8 +20,8 @@
         <div class="delivery-info">
             <h2>{{user.firstname}} {{user.lastname}}</h2>
             <h3>{{user.phone}}</h3>
-            <p>{{user.userrole}}</p>
-            <p>{{user.gender}}</p>
+            <p>{{getUserRoleName(user.userrole)}}</p>
+            <p>{{getGenderName(user.gender)}}</p>
         </div>
     </div>
     </div>

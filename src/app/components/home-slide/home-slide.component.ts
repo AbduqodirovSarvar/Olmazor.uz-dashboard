@@ -17,7 +17,7 @@ import { UpdateDialogComponent } from './update-dialog/update-dialog.component';
   standalone: true,
   imports: [
     FormsModule,
-    ReactiveFormsModule, // Added ReactiveFormsModule
+    ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
@@ -93,18 +93,15 @@ export class HomeSlideComponent implements OnInit {
     );
   }
 
-
   loadHomePosts(searchText?: string | null): void {
     this.homepostService.getAllHomePosts().subscribe(
       {
         next: (data) => {
           if(searchText) {
-            console.log('Search');
             this.onSearch(searchText);
             this.items = this.filteredItems;
           }
           else {
-            console.log(data);
             this.items = data;
             this.filteredItems = data;
           }

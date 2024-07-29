@@ -76,8 +76,8 @@ export class TeamService {
 
   constructor(private http: HttpClient) { }
 
-  getTeamMember(query: GetTeamRequest): Observable<TeamResponse> {
-    const params = new HttpParams().set('Id', query.Id);
+  getTeamMember(memberId: string): Observable<TeamResponse> {
+    const params = new HttpParams().set('Id', memberId);
     return this.http.get<TeamResponse>(this.baseTeamUrl, { params });
   }
 

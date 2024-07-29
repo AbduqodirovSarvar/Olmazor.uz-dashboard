@@ -39,7 +39,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './update-dialog.component.scss'
 })
 export class UpdateDialogComponent {
-
+  selectedFileName: string | null = null;
   homeSlideForm!: FormGroup;
 
   constructor(
@@ -156,7 +156,7 @@ export class UpdateDialogComponent {
     const file = event.target.files[0];
     if (file) {
       this.homeSlideForm.patchValue({ Photo: file });
+      this.selectedFileName = file.name;
     }
   }
-
 }

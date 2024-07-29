@@ -1,1 +1,27 @@
-<p>about works!</p>
+<div class="body">
+  <div class="container">
+    <h1>About</h1>
+    <div class="header" [formGroup]="aboutForm">
+      <div class="search-container">
+        <input type="text" placeholder="Search..." formControlName="query">
+      </div>
+      <button class="add-button" (click)="onCreateNewItem()">+ Create New</button>
+    </div>
+    <div class="grid">
+      <div class="card" *ngFor="let item of items">
+        <button class="dots-button">⋮</button>
+        <div class="dropdown-content">
+          <a (click)="onEditItem(item.id)">Edit</a>
+          <a (click)="deletePost(item.id)">Delete</a>
+        </div>
+        <div class="status">
+          <img [src]="getPhoto(item)" alt="About Image">
+        </div>
+        <div class="delivery-info">
+          <h2>{{ item.titleEn }}</h2>
+          <p>{{ item.descriptionEn }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

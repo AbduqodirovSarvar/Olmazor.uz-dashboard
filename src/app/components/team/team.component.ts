@@ -27,7 +27,7 @@ import { UpdateTeamDialogComponent } from './update-team-dialog/update-team-dial
     CommonModule
   ],
   templateUrl: './team.component.html',
-  styleUrl: './team.component.scss'
+  styleUrls: ['./team.component.scss']
 })
 export class TeamComponent implements OnInit {
   members: TeamResponse[] = [];
@@ -52,7 +52,6 @@ export class TeamComponent implements OnInit {
   }
 
   onCreateNewMember() {
-    console.log('onCreateNewMember');
     this.dialog.open(CreateTeamDialogComponent).afterClosed().subscribe({
       next: () => {
         this.loadTeamMembers(this.teamForm.get('query')?.value);
@@ -64,7 +63,6 @@ export class TeamComponent implements OnInit {
   }
 
   onEditMember(memberId: string): void {
-    console.log('onEditMember:', memberId);
     this.dialog.open(UpdateTeamDialogComponent, { data: { memberId: memberId } }).afterClosed().subscribe({
       next: () => {
         this.loadTeamMembers();
@@ -80,38 +78,31 @@ export class TeamComponent implements OnInit {
       Id: memberId,
     };
 
-    this.teamService.deleteTeamMember(deleteMemberRequest).subscribe(
-      {
-        next: () => {
-          console.log('Member deleted successfully');
-          this.loadTeamMembers();
-        },
-        error: (error) => {
-          console.error('Error:', error);
-        }
+    this.teamService.deleteTeamMember(deleteMemberRequest).subscribe({
+      next: () => {
+        this.loadTeamMembers(this.teamForm.get('query')?.value);
+      },
+      error: (error) => {
+        console.error('Error:', error);
       }
-    );
+    });
   }
 
   loadTeamMembers(searchText?: string | null): void {
-    this.teamService.getAllTeamMembers().subscribe(
-      {
-        next: (data) => {
-          if (searchText) {
-            console.log('Search');
-            this.onSearch(searchText);
-            this.members = this.filteredMembers;
-          } else {
-            console.log(data);
-            this.members = data;
-            this.filteredMembers = data;
-          }
-        },
-        error: (error) => {
-          console.error('Error:', error);
+    this.teamService.getAllTeamMembers().subscribe({
+      next: (data) => {
+        if (searchText) {
+          this.onSearch(searchText);
+          this.members = this.filteredMembers;
+        } else {
+          this.members = data;
+          this.filteredMembers = data;
         }
+      },
+      error: (error) => {
+        console.error('Error:', error);
       }
-    );
+    });
   }
 
   getPhoto(member: TeamResponse): string {

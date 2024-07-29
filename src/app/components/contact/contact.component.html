@@ -11,23 +11,19 @@
       <table>
         <thead>
             <tr>
-                <th><input type="checkbox"></th>
-                <th>Id</th>
                 <th>Name</th>
-                <th>Link</th>
+                <th>Link or Value</th>
                 <th>Created At</th>
                 <th>Action</th>
             </tr>
         </thead>
-        <tbody  *ngFor="let item of contactTypes">
+        <tbody  *ngFor="let item of contacts">
           <tr>
-            <td><input type="checkbox"></td>
-            <td>{{item.id}}</td>
-            <td>{{item.name}}</td>
-            <td>https://olmatech.uz</td>
-            <td>23/07/2024</td>
+            <td>{{getEnumName(item.name)}}</td>
+            <td>{{item.link}}</td>
+            <td>{{item.createdAt | date:'short'}}</td>
             <td>
-                <div class="action-buttons">
+                <div class="action-buttons" (click)="onEditContact(item.id)">
                     <button class="edit-btn"><img src="../../../assets/images/edit.svg" alt="Edit"></button>
                 </div>
             </td>
