@@ -12,6 +12,7 @@ import { ClientComponent } from './components/client/client.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { MessageComponent } from './components/message/message.component';
 import { AboutComponent } from './components/about/about.component';
+import { AuthGuard } from './services/auth.guard';
 
 const routes: Routes = [
   {
@@ -19,7 +20,7 @@ const routes: Routes = [
     component:FullComponent,
     children: [
       {path:"", redirectTo:"/home", pathMatch:"full"},
-      {path: "home", component: DashboardComponent},
+      {path: "home", component: DashboardComponent, canActivate: [AuthGuard]},
       {path: "about", component: AboutComponent},
       {path: "home-slides", component: HomeSlideComponent},
       {path: "services", component:ServiceComponent},
