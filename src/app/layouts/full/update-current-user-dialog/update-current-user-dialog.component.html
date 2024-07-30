@@ -57,6 +57,20 @@
         <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
       </button>
     </mat-form-field>
+    <mat-form-field *ngIf="changingPassword">
+      <mat-label>Confirm New Password</mat-label>
+      <input matInput placeholder="If you don't change the password, leave this empty" [type]="hidePassword ? 'password' : 'text'" formControlName="ConfirmNewPassword" />
+      <button mat-icon-button matSuffix type="button" (click)="togglePasswordVisibility()">
+        <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+      </button>
+    </mat-form-field>
+    <mat-form-field *ngIf="changingPassword">
+      <mat-label>Old Password</mat-label>
+      <input matInput placeholder="If you don't change the password, leave this empty" [type]="hidePassword ? 'password' : 'text'" formControlName="OldPassword" />
+      <button mat-icon-button matSuffix type="button" (click)="togglePasswordVisibility()">
+        <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+      </button>
+    </mat-form-field>
     <div>
       <label for="file">Photo: </label>
       <button id="choose-file-button" type="button" mat-raised-button (click)="fileInput.click()">{{ selectedFileName || 'Choose File' }}</button>

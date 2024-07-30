@@ -5,7 +5,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { BehaviorSubject } from 'rxjs';
 import { AuthService, LoginRequest } from 'src/app/services/apis/auth.service';
+import { UserResponse } from 'src/app/services/apis/user.service';
 import { HelperService } from 'src/app/services/helper.service';
 
 export interface LoginCommand {

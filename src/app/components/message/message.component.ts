@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { BehaviorSubject } from 'rxjs';
 import { MessageResponse, MessageService, UpdateMessageRequest } from 'src/app/services/apis/message.service';
 
 @Component({

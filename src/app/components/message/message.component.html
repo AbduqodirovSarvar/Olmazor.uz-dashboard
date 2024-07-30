@@ -16,6 +16,7 @@
             <th>Subject</th>
             <th>Message</th>
             <th>Date</th>
+            <th>Is Seen</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -26,6 +27,7 @@
             <td>{{item.subject}}</td>
             <td>{{item.text}}</td>
             <td>{{item.createdAt | date:'short'}}</td>
+            <td>{{item.isSeen}}</td>
             <td>
               <div class="action-buttons">
                 <button class="mark-read-btn" (click)="markAsRead(item.id)">

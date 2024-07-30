@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 
 export interface MessageResponse {
   id: string;
@@ -35,6 +35,7 @@ export interface DeleteMessageRequest {
 })
 export class MessageService {
   private baseMessageUrl = 'http://45.130.148.137:8080/api/Message';
+  public IsSeenBehaviourSubject: BehaviorSubject<number | null> = new BehaviorSubject<number | null>(null);
 
   constructor(private http: HttpClient) {}
 
@@ -52,6 +53,11 @@ export class MessageService {
   }
 
   getAllMessages(): Observable<MessageResponse[]> {
-    return this.http.get<MessageResponse[]>(`${this.baseMessageUrl}/all`);
+    return this.http.get<MessageResponse[]>(`${this.baseMessageUrl}/all`).pipe(
+      tap((response: MessageResponse[]) => {
+        const isSeenCount = response.filter(message => !message.isSeen).length;
+        this.IsSeenBehaviourSubject.next(isSeenCount > 0 ? isSeenCount : null);
+      })
+    );
   }
 }

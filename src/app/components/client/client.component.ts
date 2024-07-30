@@ -1,84 +1,125 @@
-import { Component } from '@angular/core';
-
-export interface GetClientQuery {
-  Id: string; // UUID for the client
-}
-
-export interface CreateClientRequest {
-  Firstname?: string;
-  FirstnameRu?: string;
-  Lastname?: string;
-  LastnameRu?: string;
-  Phone?: string;
-  Photo?: File; // Use `File` type for binary data
-  PositionUz?: string;
-  PositionEn?: string;
-  PositionRu?: string;
-  PositionUzRu?: string;
-  CommentUz?: string;
-  CommentEn?: string;
-  CommentRu?: string;
-  CommentUzRu?: string;
-}
-
-export interface UpdateClientRequest {
-  Id: string; // Required field for updating a client
-  Firstname?: string;
-  FirstnameRu?: string;
-  Lastname?: string;
-  LastnameRu?: string;
-  Phone?: string;
-  Photo?: File; // Use `File` type for binary data
-  PositionUz?: string;
-  PositionEn?: string;
-  PositionRu?: string;
-  PositionUzRu?: string;
-  CommentUz?: string;
-  CommentEn?: string;
-  CommentRu?: string;
-  CommentUzRu?: string;
-}
-
-export interface DeleteClientRequest {
-  Id: string;
-}
-
-export interface GetAllClientQuery {
-  page?: number;       // For pagination
-  pageSize?: number;   // For pagination
-  search?: string;     // For search functionality
-}
-
-export interface ClientResponse {
-  id: string; // UUID
-  positionUz: string;
-  positionEn: string;
-  positionRu: string;
-  positionUzRu: string;
-  commentUz: string;
-  commentEn: string;
-  commentRu: string;
-  commentUzRu: string;
-  firstname: string;
-  firstnameRu: string;
-  lastname: string;
-  lastnameRu: string;
-  phone: string;
-  photo: string;
-  createdBy: string;
-  createdAt: string;
-  updatedBy: string;
-  updatedAt: string;
-}
-
+import { Component, OnInit } from '@angular/core';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatButtonModule } from '@angular/material/button';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { CommonModule } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
+import { ClientService, ClientResponse, DeleteClientRequest } from 'src/app/services/apis/client.service';
+import { CreateClientDialogComponent } from './create-client-dialog/create-client-dialog.component';
+import { UpdateClientDialogComponent } from './update-client-dialog/update-client-dialog.component';
 
 @Component({
   selector: 'app-client',
   standalone: true,
-  imports: [],
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatIconModule,
+    MatDividerModule,
+    MatGridListModule,
+    CommonModule
+  ],
   templateUrl: './client.component.html',
-  styleUrl: './client.component.scss'
+  styleUrls: ['./client.component.scss']
 })
-export class ClientComponent {
+export class ClientComponent implements OnInit {
+  clients: ClientResponse[] = [];
+  filteredClients: ClientResponse[] = [];
+  searchText: string = '';
+  clientForm: FormGroup;
 
+  constructor(
+    private clientService: ClientService,
+    private dialog: MatDialog
+  ) {
+    this.clientForm = new FormGroup({
+      query: new FormControl(''),
+    });
+  }
+
+  ngOnInit(): void {
+    this.loadClients(null);
+    this.clientForm.get('query')?.valueChanges.subscribe(searchText => {
+      this.loadClients(searchText);
+    });
+  }
+
+  onCreateNewClient() {
+    this.dialog.open(CreateClientDialogComponent).afterClosed().subscribe({
+      next: () => {
+        this.loadClients(this.clientForm.get('query')?.value);
+      },
+      error: (error) => {
+        console.error('Error:', error);
+      }
+    });
+  }
+
+  onEditClient(clientId: string): void {
+    this.dialog.open(UpdateClientDialogComponent, { data: { clientId: clientId } }).afterClosed().subscribe({
+      next: () => {
+        this.loadClients();
+      },
+      error: (error) => {
+        console.error('Error:', error);
+      }
+    });
+  }
+
+  deleteClient(clientId: string): void {
+    const deleteClientRequest: DeleteClientRequest = {
+      Id: clientId,
+    };
+
+    this.clientService.deleteClient(deleteClientRequest).subscribe({
+      next: () => {
+        this.loadClients(this.clientForm.get('query')?.value);
+      },
+      error: (error) => {
+        console.error('Error:', error);
+      }
+    });
+  }
+
+  loadClients(searchText?: string | null): void {
+    this.clientService.getAllClients().subscribe({
+      next: (data) => {
+        if (searchText) {
+          this.onSearch(searchText);
+          this.clients = this.filteredClients;
+        } else {
+          this.clients = data;
+          this.filteredClients = data;
+        }
+      },
+      error: (error) => {
+        console.error('Error:', error);
+      }
+    });
+  }
+
+  getPhoto(client: ClientResponse): string {
+    return `http://45.130.148.137:8080/api/File/${client.photo}`;
+  }
+
+  onSearch(query: string): void {
+    const lowerQuery = query.toLowerCase();
+    this.filteredClients = this.clients.filter(client =>
+      (client.firstname && client.firstname.toLowerCase().includes(lowerQuery)) ||
+      (client.firstnameRu && client.firstnameRu.toLowerCase().includes(lowerQuery)) ||
+      (client.lastname && client.lastname.toLowerCase().includes(lowerQuery)) ||
+      (client.lastnameRu && client.lastnameRu.toLowerCase().includes(lowerQuery)) ||
+      (client.positionUz && client.positionUz.toLowerCase().includes(lowerQuery)) ||
+      (client.positionEn && client.positionEn.toLowerCase().includes(lowerQuery)) ||
+      (client.positionRu && client.positionRu.toLowerCase().includes(lowerQuery)) ||
+      (client.positionUzRu && client.positionUzRu.toLowerCase().includes(lowerQuery))
+    );
+  }
 }

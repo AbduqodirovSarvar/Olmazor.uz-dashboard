@@ -37,7 +37,7 @@
       </button>
       <div class="ms-auto d-flex align-items-center">
         <!-- Notification Button -->
-        <button mat-icon-button matBadge="5" matBadgeSize="large" matBadgePosition="above after" class="fs-16 pt-4 pb-4 ps-8 pe-8 text-light-muted d-flex align-items-center me-2" style="margin: 10px;">
+        <button mat-icon-button matBadge={{notificationNumber}} matBadgeSize="large" matBadgePosition="above after" class="fs-16 pt-4 pb-4 ps-8 pe-8 text-light-muted d-flex align-items-center me-2" style="margin: 10px;">
           <i-feather name="bell" class="feather-base"></i-feather>
         </button>
 
@@ -58,16 +58,15 @@
         <!-- User Profile Button -->
         <button mat-button class="fs-16 pt-4 pb-4 ps-8 pe-8 text-light-muted d-flex align-items-center" [matMenuTriggerFor]="profileMenu">
           <div class="d-flex align-items-center">
-            <img src="assets/images/user2.webp" class="rounded-circle" alt="">
-            <span class="fw-bold ms-8"> Abduqodirov Sarvar</span>
+            <span class="fw-bold ms-8">{{currentUser.firstname}} {{currentUser.lastname}}</span>
             <i-feather name="chevron-down" class="feather-base"></i-feather>
           </div>
         </button>
+        <img [src]="getPhoto()" class="rounded-circle" alt="img" style="height: 45px;width: 40px;margin:2px;">
         <mat-menu #profileMenu="matMenu" class="profile-dropdown">
           <div class="p-16 mb-4">
-            <button mat-menu-item class="fs-16" disabled>User Role</button>
-            <button mat-menu-item class="fs-16">Settings</button>
-            <button mat-menu-item class="fs-16">Change Password</button>
+            <button mat-menu-item class="fs-16" disabled>{{getEnumName()}}</button>
+            <button mat-menu-item class="fs-16" (click)="clickSettings()">Settings</button>
           </div>
           <hr>
           <div class="p-16 mb-4">

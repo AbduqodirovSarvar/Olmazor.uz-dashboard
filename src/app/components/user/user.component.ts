@@ -88,8 +88,12 @@ export class UserComponent implements OnInit {
   }
 
   onEditUser(userId: string): void {
-    this.dialog.open(UpdateUserDialogComponent, { data: { userId: userId } }).afterClosed().subscribe({
-      next: () => {
+    this.dialog.open(UpdateUserDialogComponent, {
+       data: { userId: userId },
+       disableClose: true }
+      ).afterClosed().subscribe({
+      next: (a) => {
+        console.log(a);
         this.loadUsers();
       },
       error: (error) => {

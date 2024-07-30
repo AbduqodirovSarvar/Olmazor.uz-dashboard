@@ -1,17 +1,18 @@
 import { CommonModule } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { MatIconModule } from '@angular/material/icon'; // Add MatIconModule
+import { AuthService } from 'src/app/services/apis/auth.service';
 import { BaseApiService, EnumResponse } from 'src/app/services/apis/base.api.service';
 import { UserService, UpdateUserRequest, UserResponse } from 'src/app/services/apis/user.service';
 
 @Component({
-  selector: 'app-update-user-dialog',
+  selector: 'app-update-current-user-dialog',
   standalone: true,
   imports: [
     CommonModule,
@@ -21,24 +22,45 @@ import { UserService, UpdateUserRequest, UserResponse } from 'src/app/services/a
     ReactiveFormsModule,
     MatButtonModule,
     MatSelectModule,
-    MatIconModule // Add MatIconModule
+    MatIconModule
   ],
-  templateUrl: './update-user-dialog.component.html',
-  styleUrls: ['./update-user-dialog.component.scss']
+  templateUrl: './update-current-user-dialog.component.html',
+  styleUrls: ['./update-current-user-dialog.component.scss']
 })
-export class UpdateUserDialogComponent implements OnInit {
+export class UpdateCurrentUserDialogComponent implements OnInit {
   userForm!: FormGroup;
   selectedFileName: string | null = null;
   userRoles: EnumResponse[] = [];
   genders: EnumResponse[] = [];
+  changingPassword: boolean = false;
   hidePassword: boolean = true;
 
+
   constructor(
-    public dialogRef: MatDialogRef<UpdateUserDialogComponent>,
+    public dialogRef: MatDialogRef<UpdateCurrentUserDialogComponent>,
     private userService: UserService,
     private baseApiService: BaseApiService,
-    @Inject(MAT_DIALOG_DATA) public data: { userId: string }
-  ) {
+    private authService: AuthService
+  ) { }
+
+  ngOnInit(): void {
+    this.userForm = new FormGroup({
+      Id: new FormControl('', Validators.required),
+      Firstname: new FormControl(''),
+      FirstnameRu: new FormControl(''),
+      Lastname: new FormControl(''),
+      LastnameRu: new FormControl(''),
+      Phone: new FormControl(''),
+      Userrole: new FormControl(''),
+      Gender: new FormControl(''),
+      Email: new FormControl('', [Validators.email]),
+      Password: new FormControl(''),
+      OldPassword: new FormControl(''),
+      ConfirmNewPassword: new FormControl(''/*,  [this.passwordsMatchValidator]*/),
+      Photo: new FormControl<File | null>(null)
+    }
+  );
+
     this.baseApiService.getUserRoles().subscribe({
       next: (roles: EnumResponse[]) => {
         this.userRoles = roles;
@@ -56,26 +78,10 @@ export class UpdateUserDialogComponent implements OnInit {
         console.error('Error fetching gender data:', error);
       }
     });
-  }
 
-  ngOnInit(): void {
-    this.userForm = new FormGroup({
-      Id: new FormControl('', Validators.required),
-      Firstname: new FormControl(''),
-      FirstnameRu: new FormControl(''),
-      Lastname: new FormControl(''),
-      LastnameRu: new FormControl(''),
-      Phone: new FormControl(''),
-      Userrole: new FormControl(''),
-      Gender: new FormControl(''),
-      Email: new FormControl('', [Validators.email]),
-      Password: new FormControl(''),
-      Photo: new FormControl<File | null>(null)
-    });
-
-    this.userService.getUser(this.data.userId).subscribe({
-      next: (user: UserResponse) => {
-        if (user) {
+    this.authService.userBehavior.subscribe({
+      next: (user: UserResponse | null) => {
+        if(user){
           this.userForm.patchValue({
             Id: user.id,
             Firstname: user.firstname,
@@ -89,35 +95,49 @@ export class UpdateUserDialogComponent implements OnInit {
           });
         }
       },
-      error: (error) => {
-        console.error('Error fetching user data:', error);
+      error: (error: any) => {
+        console.error('Error fetching user:', error);
       }
+    });
+
+    this.userForm.get('Password')?.valueChanges.subscribe({
+      next: (password: string) => {
+        this.userForm.updateValueAndValidity();
+        if (password) {
+          this.changingPassword = true;
+          this.userForm.get('ConfirmNewPassword')?.setValidators([Validators.required]);
+          this.userForm.get('OldPassword')?.setValidators([Validators.required]);
+        } else {
+          this.changingPassword = false;
+          this.userForm.get('ConfirmNewPassword')?.clearValidators();
+          this.userForm.get('OldPassword')?.clearValidators();
+        }
+        this.userForm.get('ConfirmNewPassword')?.updateValueAndValidity();
+        this.userForm.get('OldPassword')?.updateValueAndValidity();
+      },
+      error: (error: any) => {
+        console.error('Error validating password:', error);
+      },
     });
   }
 
-  updateUserRequest: UpdateUserRequest = {
-    Id: '',
-    Firstname: '',
-    FirstnameRu: '',
-    Lastname: '',
-    LastnameRu: '',
-    Phone: '',
-    Userrole: 0,
-    Gender: 0,
-    Email: '',
-    Password: '',
-    OldPassword: '',
-    Photo: new File([], '')
-  };
+  passwordsMatchValidator(control: AbstractControl) : { [key: string]: any } | null {
+    const password = this.userForm.get('Password')?.value;
+    const confirmPassword = control?.value;
+    if (password && confirmPassword && password !== confirmPassword) {
+      return { mismatch: true }
+    }
+
+    return null;
+  }
 
   onNoClick(): void {
-    console.log('No click)');
     this.dialogRef.close();
   }
 
   onSubmit(): void {
     if (this.userForm.valid) {
-      this.updateUserRequest = {
+      const updateUserRequest: UpdateUserRequest = {
         Id: this.userForm.get('Id')?.value,
         Firstname: this.userForm.get('Firstname')?.value,
         FirstnameRu: this.userForm.get('FirstnameRu')?.value,
@@ -128,10 +148,11 @@ export class UpdateUserDialogComponent implements OnInit {
         Gender: this.userForm.get('Gender')?.value,
         Email: this.userForm.get('Email')?.value,
         Password: this.userForm.get('Password')?.value,
+        OldPassword: this.userForm.get('OldPassword')?.value,
         Photo: this.userForm.get('Photo')?.value
       };
 
-      this.userService.updateUser(this.updateUserRequest).subscribe({
+      this.userService.updateUser(updateUserRequest).subscribe({
         next: () => {
           console.log('User updated successfully!');
         },

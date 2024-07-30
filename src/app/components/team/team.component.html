@@ -1,9 +1,9 @@
 <div class="body">
   <div class="container">
     <h1>Team</h1>
-    <div class="header">
+    <div class="header" [formGroup]="teamForm">
         <div class="search-container">
-          <input type="text" placeholder="Search...">
+          <input type="text" placeholder="Search..." formControlName="query">
       </div>
         <button class="add-button" (click)="onCreateNewMember()">+ Create New</button>
     </div>
