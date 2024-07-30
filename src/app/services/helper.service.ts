@@ -1,6 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 function urlValidator(control: AbstractControl): { [key: string]: boolean } | null {
   const urlPattern = /^(https?:\/\/[^\s$.?#].[^\s]*)$/i;
@@ -19,11 +21,20 @@ export class HelperService {
 
   private languageKey: string = "language_code";
   private accessTokenKey: string = "access_token_olma_tech";
+  private jsonUrl : string = `../../assets/i18n`;
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private http: HttpClient
+  ) { }
+
+  getJsonData(languageCode: string): Observable<any> {
+    return this.http.get<any>(`${this.jsonUrl}/${languageCode}.json`);
+  }
 
   setLaguage(language?: string | null): string{
     localStorage.setItem(this.languageKey, language ?? 'Ru');
+    window.location.reload();
     return language ?? 'Ru';
   }
 

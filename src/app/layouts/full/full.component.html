@@ -7,7 +7,7 @@
     <div class="p-16">
       <div class="mb-16">
         <a href="javascript:void(0)" class="d-flex align-items-center">
-          <img src="assets/images/olmatech.jpg" style="width: 50px;border-radius: 50%;" alt=""> <span class="ms-16 fw-medium fs-26">OlmaTech</span>
+          <img src="assets/images/olmatech.jpg" style="width: 50px;border-radius: 50%;" alt=""> <span class="ms-16 fw-medium fs-26">{{"title.sidebar" | translation | async}}</span>
         </a>
 
       </div>
@@ -18,7 +18,7 @@
             <a matRipple [matRippleColor]="'#f7f8f443'" routerLink="{{ sidenav.link }}"
               class="sidebar-menu w-100 d-flex align-items-center" [routerLinkActive]="routerActive">
               <i-feather name="{{ sidenav.icon }}" class="feather-base me-12"></i-feather> <span
-                class="ps-4">{{ sidenav.menu }}</span>
+                class="ps-4">{{ sidenav.menu | translation | async }}</span>
             </a>
           </li>
         </ul>
@@ -45,7 +45,7 @@
         <button mat-button class="fs-16 pt-4 pb-4 ps-8 pe-8 text-light-muted d-flex align-items-center" [matMenuTriggerFor]="languageMenu">
           <div class="d-flex align-items-center">
             <i-feather name="globe" class="feather-base"></i-feather>
-            <span class="fw-bold ms-8">Language</span>
+            <span class="fw-bold ms-8">{{"btn.language" | translation | async}}</span>
             <i-feather name="chevron-down" class="feather-base"></i-feather>
           </div>
         </button>
@@ -65,12 +65,12 @@
         <img [src]="getPhoto()" class="rounded-circle" alt="img" style="height: 45px;width: 40px;margin:2px;">
         <mat-menu #profileMenu="matMenu" class="profile-dropdown">
           <div class="p-16 mb-4">
-            <button mat-menu-item class="fs-16" disabled>{{getEnumName()}}</button>
-            <button mat-menu-item class="fs-16" (click)="clickSettings()">Settings</button>
+            <button mat-menu-item class="fs-16" disabled>{{ (getEnumName() | translation) | async}}</button>
+            <button mat-menu-item class="fs-16" (click)="clickSettings()">{{"btn.settings" | translation | async}}</button>
           </div>
           <hr>
           <div class="p-16 mb-4">
-            <button mat-menu-item class="fs-16" (click)="logOut()">Logout</button>
+            <button mat-menu-item class="fs-16" (click)="logOut()">{{"btn.logout" | translation | async}}</button>
           </div>
         </mat-menu>
       </div>

@@ -11,6 +11,7 @@ import { AboutService, AboutResponse, DeleteAboutRequest } from 'src/app/service
 import { CommonModule } from '@angular/common';
 import { CreateAboutDialogComponent } from './create-about-dialog/create-about-dialog.component';
 import { UpdateAboutDialogComponent } from './update-about-dialog/update-about-dialog.component';
+import { TranslationPipe } from "../../services/translation.pipe";
 
 @Component({
   selector: 'app-about',
@@ -24,8 +25,9 @@ import { UpdateAboutDialogComponent } from './update-about-dialog/update-about-d
     MatIconModule,
     MatDividerModule,
     MatGridListModule,
-    CommonModule
-  ],
+    CommonModule,
+    TranslationPipe
+],
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.scss']
 })

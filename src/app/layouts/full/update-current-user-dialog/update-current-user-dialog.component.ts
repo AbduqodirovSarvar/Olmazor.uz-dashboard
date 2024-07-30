@@ -10,6 +10,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { AuthService } from 'src/app/services/apis/auth.service';
 import { BaseApiService, EnumResponse } from 'src/app/services/apis/base.api.service';
 import { UserService, UpdateUserRequest, UserResponse } from 'src/app/services/apis/user.service';
+import { TranslationPipe } from "../../../services/translation.pipe";
 
 @Component({
   selector: 'app-update-current-user-dialog',
@@ -22,8 +23,9 @@ import { UserService, UpdateUserRequest, UserResponse } from 'src/app/services/a
     ReactiveFormsModule,
     MatButtonModule,
     MatSelectModule,
-    MatIconModule
-  ],
+    MatIconModule,
+    TranslationPipe
+],
   templateUrl: './update-current-user-dialog.component.html',
   styleUrls: ['./update-current-user-dialog.component.scss']
 })

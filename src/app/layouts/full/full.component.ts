@@ -3,7 +3,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { HelperService } from 'src/app/services/helper.service';
-import { UserResponse } from 'src/app/services/apis/user.service';
+import { UserResponse, UserService } from 'src/app/services/apis/user.service';
 import { AuthService } from 'src/app/services/apis/auth.service';
 import { MessageService } from 'src/app/services/apis/message.service';
 import { BaseApiService, EnumResponse } from 'src/app/services/apis/base.api.service';
@@ -32,14 +32,24 @@ export class FullComponent implements OnInit {
     private authService: AuthService,
     private messageService: MessageService,
     private baseApiService: BaseApiService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private userService: UserService
   ) {
-    authService.userBehavior.subscribe({
-      next: (user) => {
-        this.currentUser = user!;
+    // authService.userBehavior.subscribe({
+    //   next: (user) => {
+    //     this.currentUser = user!;
+    //   },
+    //   error: (error) => {
+    //     console.error(error);
+    //   }
+    // });
+
+    userService.getMe().subscribe({
+      next: (user: UserResponse) => {
+        this.currentUser = user;
       },
-      error: (error) => {
-        console.error(error);
+      error: (error: Error) => {
+        throw error;
       }
     });
 
@@ -63,7 +73,6 @@ export class FullComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.helperService.setLaguage(null);
     this.messageService.getAllMessages().subscribe({
       next: (messages) => {
         this.notificationNumber = messages.filter(item => item.isSeen === false).length > 0 ? messages.filter(item => item.isSeen === false).length : null;
@@ -108,57 +117,57 @@ export class FullComponent implements OnInit {
     {
       link: "/home",
       icon: "home",
-      menu: "Dashboard",
+      menu: "menu.dashboard",
     },
     {
       link: "/about",
       icon: "info",
-      menu: "About Company",
+      menu: "menu.about",
     },
     {
       link: "/home-slides",
       icon: "layers",
-      menu: "Home Slides",
+      menu: "menu.home-slide",
     },
     {
       link: "/services",
       icon: "list",
-      menu: "Services",
+      menu: "menu.service",
     },
     {
       link: "/projects",
       icon: "box",
-      menu: "Projects",
+      menu: "menu.project",
     },
     {
       link: "/team",
       icon: "users",
-      menu: "Team",
+      menu: "menu.team",
     },
     {
       link: "/clients",
       icon: "user-plus",
-      menu: "Clients",
+      menu: "menu.client",
     },
     {
       link: "/blogs",
       icon: "book",
-      menu: "Blogs",
+      menu: "menu.blog",
     },
     {
       link: "/contacts",
       icon: "phone",
-      menu: "Contacts",
+      menu: "menu.contact",
     },
     {
       link: "/messages",
       icon: "mail",
-      menu: "Messages",
+      menu: "menu.message",
     },
     {
       link: "/users",
       icon: "user-check",
-      menu: "Users",
+      menu: "menu.user",
     },
   ]
 }

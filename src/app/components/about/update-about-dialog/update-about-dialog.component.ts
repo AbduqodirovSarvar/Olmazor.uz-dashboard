@@ -14,6 +14,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { AboutService, UpdateAboutRequest, AboutResponse } from 'src/app/services/apis/about.service';
+import { TranslationPipe } from "../../../services/translation.pipe";
 
 @Component({
   selector: 'app-update-about-dialog',
@@ -30,8 +31,9 @@ import { AboutService, UpdateAboutRequest, AboutResponse } from 'src/app/service
     ReactiveFormsModule,
     FormsModule,
     CommonModule,
-    MatSelectModule
-  ],
+    MatSelectModule,
+    TranslationPipe
+],
   templateUrl: './update-about-dialog.component.html',
   styleUrls: ['./update-about-dialog.component.scss']
 })

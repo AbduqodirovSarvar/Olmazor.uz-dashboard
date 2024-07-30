@@ -1,33 +1,33 @@
-<h2 mat-dialog-title>Update User</h2>
+<h2 mat-dialog-title>{{"title.update-user" | translation | async}}</h2>
 <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
   <mat-dialog-content>
     <mat-form-field>
-      <mat-label>Firstname</mat-label>
+      <mat-label>{{"input.firstname-en" | translation | async}}</mat-label>
       <input matInput formControlName="Firstname" />
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Firstname (Ru)</mat-label>
+      <mat-label>{{"input.firstname-ru" | translation | async}}</mat-label>
       <input matInput formControlName="FirstnameRu" />
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Lastname</mat-label>
+      <mat-label>{{"input.lastname-en" | translation | async}}</mat-label>
       <input matInput formControlName="Lastname" />
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Lastname (Ru)</mat-label>
+      <mat-label>{{"input.lastname-ru" | translation | async}}</mat-label>
       <input matInput formControlName="LastnameRu" />
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Phone</mat-label>
+      <mat-label>{{"input.phone" | translation | async}}</mat-label>
       <input matInput formControlName="Phone" />
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>User Role</mat-label>
+      <mat-label>{{"input.userrole" | translation | async}}</mat-label>
       <!-- <input matInput formControlName="Userrole" /> -->
       <mat-select formControlName="Userrole" required>
         <mat-option *ngFor="let role of userRoles" [value]="role.id">
@@ -37,7 +37,7 @@
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Gender</mat-label>
+      <mat-label>{{"input.gender" | translation | async}}</mat-label>
       <mat-select formControlName="Gender" required>
         <mat-option *ngFor="let gender of genders" [value]="gender.id">
           {{ gender.name }}
@@ -46,39 +46,39 @@
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Email</mat-label>
+      <mat-label>{{"input.email" | translation | async}}</mat-label>
       <input matInput formControlName="Email" />
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>New Password</mat-label>
+      <mat-label>{{"input.new-password" | translation | async}}</mat-label>
       <input matInput placeholder="If you don't change the password, leave this empty" [type]="hidePassword ? 'password' : 'text'" formControlName="Password" />
       <button mat-icon-button matSuffix type="button" (click)="togglePasswordVisibility()">
         <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
       </button>
     </mat-form-field>
     <mat-form-field *ngIf="changingPassword">
-      <mat-label>Confirm New Password</mat-label>
+      <mat-label>{{"input.confirm-new-password" | translation | async}}</mat-label>
       <input matInput placeholder="If you don't change the password, leave this empty" [type]="hidePassword ? 'password' : 'text'" formControlName="ConfirmNewPassword" />
       <button mat-icon-button matSuffix type="button" (click)="togglePasswordVisibility()">
         <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
       </button>
     </mat-form-field>
     <mat-form-field *ngIf="changingPassword">
-      <mat-label>Old Password</mat-label>
+      <mat-label>{{"input.old-password" | translation | async}}</mat-label>
       <input matInput placeholder="If you don't change the password, leave this empty" [type]="hidePassword ? 'password' : 'text'" formControlName="OldPassword" />
       <button mat-icon-button matSuffix type="button" (click)="togglePasswordVisibility()">
         <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
       </button>
     </mat-form-field>
     <div>
-      <label for="file">Photo: </label>
-      <button id="choose-file-button" type="button" mat-raised-button (click)="fileInput.click()">{{ selectedFileName || 'Choose File' }}</button>
+      <label for="file">{{"input.photo" | translation | async}}</label>
+      <button id="choose-file-button" type="button" mat-raised-button (click)="fileInput.click()">{{ selectedFileName || ("btn.choose-file" | translation | async) }}</button>
       <input hidden (change)="onFileChange($event)" #fileInput type="file" id="file" required>
     </div>
   </mat-dialog-content>
   <mat-dialog-actions>
-    <button mat-button (click)="onNoClick()">Cancel</button>
-    <button mat-button type="submit" [disabled]="userForm.invalid" cdkFocusInitial>Save</button>
+    <button mat-button (click)="onNoClick()">{{"btn.cancel" | translation | async}}</button>
+    <button mat-button type="submit" [disabled]="userForm.invalid" cdkFocusInitial>{{"btn.save" | translation | async}}</button>
   </mat-dialog-actions>
 </form>

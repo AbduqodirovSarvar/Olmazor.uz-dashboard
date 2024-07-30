@@ -13,6 +13,7 @@ import {
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { AboutService, CreateAboutRequest } from 'src/app/services/apis/about.service';
+import { TranslationPipe } from "../../../services/translation.pipe";
 
 @Component({
   selector: 'app-create-about-dialog',
@@ -28,8 +29,9 @@ import { AboutService, CreateAboutRequest } from 'src/app/services/apis/about.se
     MatDialogClose,
     ReactiveFormsModule,
     FormsModule,
-    CommonModule
-  ],
+    CommonModule,
+    TranslationPipe
+],
   templateUrl: './create-about-dialog.component.html',
   styleUrls: ['./create-about-dialog.component.scss']
 })

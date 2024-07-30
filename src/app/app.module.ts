@@ -16,6 +16,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { ComponentsModule } from './components/components.module';
 import { HttpConfigInterceptorService } from './services/http-config-interceptor.service';
+import { TranslationPipe } from "./services/translation.pipe";
 
 @NgModule({
   declarations: [
@@ -32,8 +33,9 @@ import { HttpConfigInterceptorService } from './services/http-config-interceptor
     DashboardModule,
     ComponentsModule,
     FormsModule,
-    ReactiveFormsModule
-  ],
+    ReactiveFormsModule,
+    TranslationPipe
+],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

@@ -1,99 +1,99 @@
-<h2 mat-dialog-title>Update About</h2>
+<h2 mat-dialog-title>{{"title.update-about" | translation | async}}</h2>
 <form [formGroup]="aboutForm" (ngSubmit)="onSubmit()">
   <mat-dialog-content>
     <mat-form-field>
-      <mat-label>Address (Uzbek)</mat-label>
+      <mat-label>{{"input.address-uz" | translation | async}}</mat-label>
       <input matInput formControlName="AddressUz" />
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Address (English)</mat-label>
+      <mat-label>{{"input.address-en" | translation | async}}</mat-label>
       <input matInput formControlName="AddressEn" />
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Address (Russian)</mat-label>
+      <mat-label>{{"input.address-ru" | translation | async}}</mat-label>
       <input matInput formControlName="AddressRu" />
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Address (Uzbek Cyrillic)</mat-label>
+      <mat-label>{{"input.address-uzru" | translation | async}}</mat-label>
       <input matInput formControlName="AddressUzRu" />
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Title (Uzbek)</mat-label>
+      <mat-label>{{"input.title-uz" | translation | async}}</mat-label>
       <input matInput formControlName="TitleUz" />
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Title (English)</mat-label>
+      <mat-label>{{"input.title-en" | translation | async}}</mat-label>
       <input matInput formControlName="TitleEn" />
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Title (Russian)</mat-label>
+      <mat-label>{{"input.title-ru" | translation | async}}</mat-label>
       <input matInput formControlName="TitleRu" />
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Title (Uzbek Cyrillic)</mat-label>
+      <mat-label>{{"input.title-uzru" | translation | async}}</mat-label>
       <input matInput formControlName="TitleUzRu" />
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Description (Uzbek)</mat-label>
+      <mat-label>{{"input.description-uz" | translation | async}}</mat-label>
       <textarea matInput formControlName="DescriptionUz"></textarea>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Description (English)</mat-label>
+      <mat-label>{{"input.description-en" | translation | async}}</mat-label>
       <textarea matInput formControlName="DescriptionEn"></textarea>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Description (Russian)</mat-label>
+      <mat-label>{{"input.description-ru" | translation | async}}</mat-label>
       <textarea matInput formControlName="DescriptionRu"></textarea>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Description (Uzbek Cyrillic)</mat-label>
+      <mat-label>{{"input.description-uzru" | translation | async}}</mat-label>
       <textarea matInput formControlName="DescriptionUzRu"></textarea>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Description Footer (Uzbek)</mat-label>
+      <mat-label>{{"input.description-footer-uz" | translation | async}}</mat-label>
       <textarea matInput formControlName="DescriptionFooterUz"></textarea>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Description Footer (English)</mat-label>
+      <mat-label>{{"input.description-footer-en" | translation | async}}</mat-label>
       <textarea matInput formControlName="DescriptionFooterEn"></textarea>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Description Footer (Russian)</mat-label>
+      <mat-label>{{"input.description-footer-ru" | translation | async}}</mat-label>
       <textarea matInput formControlName="DescriptionFooterRu"></textarea>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Description Footer (Uzbek Cyrillic)</mat-label>
+      <mat-label>{{"input.description-footer-uzru" | translation | async}}</mat-label>
       <textarea matInput formControlName="DescriptionFooterUzRu"></textarea>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Experience</mat-label>
+      <mat-label>{{"input.experience" | translation | async}}</mat-label>
       <input matInput formControlName="Experience" type="number" />
     </mat-form-field>
 
     <div>
-      <label for="file">Photo: </label>
-      <button id="choose-file-button" type="button" mat-raised-button (click)="fileInput.click()">{{ selectedFileName || 'Choose File' }}</button>
+      <label for="file">{{"input.photo" | translation | async}}</label>
+      <button id="choose-file-button" type="button" mat-raised-button (click)="fileInput.click()">{{ selectedFileName || ("btn.choose-file" | translation | async)}}</button>
       <input hidden (change)="onFileChange($event)" #fileInput type="file" id="file">
     </div>
   </mat-dialog-content>
   <mat-dialog-actions>
-    <button mat-button (click)="onNoClick()">Cancel</button>
-    <button mat-button type="submit" [disabled]="aboutForm.invalid" cdkFocusInitial>Save</button>
+    <button mat-button (click)="onNoClick()">{{"btn.cancel" | translation | async}}</button>
+    <button mat-button type="submit" [disabled]="aboutForm.invalid" cdkFocusInitial>{{"btn.save" | translation | async}}</button>
   </mat-dialog-actions>
 </form>
