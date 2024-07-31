@@ -92,7 +92,7 @@ export class FullComponent implements OnInit {
   }
 
   getEnumName() :string {
-    return this.userRoles.find(x => x.id === this.currentUser.userrole)?.name ?? "undefined";
+    return this.userRoles.find(x => x.id === this.currentUser.userrole)?.name ?? "None";
   }
 
   changeLanguage(language: string): void {

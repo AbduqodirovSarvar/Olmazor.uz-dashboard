@@ -1,58 +1,88 @@
-<h2 mat-dialog-title>Create Project</h2>
+<h2 mat-dialog-title>{{"title.create-project" | translation | async}}</h2>
 <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
   <mat-dialog-content>
     <mat-form-field>
-      <mat-label>Name (Uz)</mat-label>
+      <mat-label>{{"input.name-uz" | translation | async}}</mat-label>
       <input matInput formControlName="NameUz" />
+      <mat-error>
+        {{"error.required" | translation | async}}
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Name (En)</mat-label>
+      <mat-label>{{"input.name-en" | translation | async}}</mat-label>
       <input matInput formControlName="NameEn" />
+      <mat-error>
+        {{"error.required" | translation | async}}
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Name (Ru)</mat-label>
+      <mat-label>{{"input.name-ru" | translation | async}}</mat-label>
       <input matInput formControlName="NameRu" />
+      <mat-error>
+        {{"error.required" | translation | async}}
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Name (UzRu)</mat-label>
+      <mat-label>{{"input.name-uzru" | translation | async}}</mat-label>
       <input matInput formControlName="NameUzRu" />
+      <mat-error>
+        {{"error.required" | translation | async}}
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Description (Uz)</mat-label>
+      <mat-label>{{"input.description-uz" | translation | async}}</mat-label>
       <textarea matInput formControlName="DescriptionUz"></textarea>
+      <mat-error>
+        {{"error.required" | translation | async}}
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Description (En)</mat-label>
+      <mat-label>{{"input.description-en" | translation | async}}</mat-label>
       <textarea matInput formControlName="DescriptionEn"></textarea>
+      <mat-error>
+        {{"error.required" | translation | async}}
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Description (Ru)</mat-label>
+      <mat-label>{{"input.description-ru" | translation | async}}</mat-label>
       <textarea matInput formControlName="DescriptionRu"></textarea>
+      <mat-error>
+        {{"error.required" | translation | async}}
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Description (UzRu)</mat-label>
+      <mat-label>{{"input.description-uzru" | translation | async}}</mat-label>
       <textarea matInput formControlName="DescriptionUzRu"></textarea>
+      <mat-error>
+        {{"error.required" | translation | async}}
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Link</mat-label>
+      <mat-label>{{"input.link" | translation | async}}</mat-label>
       <input matInput formControlName="Link" />
+      <mat-error>
+        {{"error.required" | translation | async}}
+      </mat-error>
     </mat-form-field>
     <div>
-      <label for="file">Photo: </label>
-      <button id="choose-file-button" type="button" mat-raised-button (click)="fileInput.click()">{{ selectedFileName || 'Choose File' }}</button>
+      <label for="file">{{"input.photo" | translation | async}}</label>
+      <button id="choose-file-button" type="button" mat-raised-button (click)="fileInput.click()">{{ selectedFileName || ("btn.choose-file" | translation | async) }}</button>
       <input hidden (change)="onFileChange($event)" #fileInput type="file" id="file" required>
+      <mat-error>
+        {{"error.required" | translation | async}}
+      </mat-error>
     </div>
   </mat-dialog-content>
   <mat-dialog-actions>
-    <button mat-button (click)="onNoClick()">Cancel</button>
-    <button mat-button type="submit" [disabled]="projectForm.invalid" cdkFocusInitial>Save</button>
+    <button mat-button (click)="onNoClick()">{{"btn.cancel" | translation | async}}</button>
+    <button mat-button type="submit" [disabled]="projectForm.invalid" cdkFocusInitial>{{"btn.add" | translation | async}}</button>
   </mat-dialog-actions>
 </form>

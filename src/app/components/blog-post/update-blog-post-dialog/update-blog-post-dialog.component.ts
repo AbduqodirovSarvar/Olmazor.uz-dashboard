@@ -14,6 +14,7 @@ import { MatInputModule } from '@angular/material/input';
 import { CommonModule } from '@angular/common';
 import { BlogPostResponse, BlogService, UpdateBlogPostRequest } from 'src/app/services/apis/blog.service';
 import { BaseApiService } from 'src/app/services/apis/base.api.service';
+import { TranslationPipe } from 'src/app/services/translation.pipe';
 
 @Component({
   selector: 'app-update-blog-post-dialog',
@@ -28,7 +29,8 @@ import { BaseApiService } from 'src/app/services/apis/base.api.service';
     MatDialogActions,
     MatDialogClose,
     ReactiveFormsModule,
-    CommonModule
+    CommonModule,
+    TranslationPipe
   ],
   templateUrl: './update-blog-post-dialog.component.html',
   styleUrl: './update-blog-post-dialog.component.scss'

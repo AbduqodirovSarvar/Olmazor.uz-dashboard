@@ -11,6 +11,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { CommonModule } from '@angular/common';
 import { ProjectService, CreateProjectRequest } from 'src/app/services/apis/project.service';
+import { TranslationPipe } from 'src/app/services/translation.pipe';
 
 @Component({
   selector: 'app-create-project-dialog',
@@ -24,7 +25,8 @@ import { ProjectService, CreateProjectRequest } from 'src/app/services/apis/proj
     MatDialogContent,
     MatDialogActions,
     ReactiveFormsModule,
-    CommonModule
+    CommonModule,
+    TranslationPipe
   ],
   templateUrl: './create-project-dialog.component.html',
   styleUrls: ['./create-project-dialog.component.scss']

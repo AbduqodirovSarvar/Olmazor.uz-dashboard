@@ -1,18 +1,18 @@
 <div class="body">
   <div class="container">
-    <h1>Users</h1>
+    <h1>{{"title.user" | translation | async}}</h1>
     <div class="header" [formGroup]="userForm">
         <div class="search-container">
-          <input type="text" placeholder="Search..." formControlName="query">
+          <input type="text" [placeholder]="('placeholder.search' | translation | async)" formControlName="query">
       </div>
-        <button class="add-button" (click)="onCreateNewUser()">+ Create New</button>
+        <button class="add-button" (click)="onCreateNewUser()">{{"btn.create" | translation | async}}</button>
     </div>
     <div class="grid">
       <div class="card" *ngFor="let user of users">
         <button class="dots-button">⋮</button>
                 <div class="dropdown-content">
-                    <a (click)="onEditUser(user.id)">Edit</a>
-                    <a (click)="onDeleteUser(user.id)">Delete</a>
+                    <a (click)="onEditUser(user.id)">{{"btn.edit" | translation | async}}</a>
+                    <a (click)="onDeleteUser(user.id)">{{"btn.delete" | translation | async}}</a>
                 </div>
         <div class="status">
             <img [src]="getPhoto(user)" alt="Img">
@@ -20,8 +20,8 @@
         <div class="delivery-info">
             <h2>{{user.firstname}} {{user.lastname}}</h2>
             <h3>{{user.phone}}</h3>
-            <p>{{getUserRoleName(user.userrole)}}</p>
-            <p>{{getGenderName(user.gender)}}</p>
+            <p>{{ ('userrole.'+ getUserRoleName(user.userrole)) | translation | async }}</p>
+            <p>{{ ('gender.'+ getGenderName(user.gender)) | translation | async }}</p>
         </div>
     </div>
     </div>

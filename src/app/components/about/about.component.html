@@ -11,8 +11,8 @@
       <div class="card" *ngFor="let item of items">
         <button class="dots-button">⋮</button>
         <div class="dropdown-content">
-          <a (click)="onEditItem(item.id)">Edit</a>
-          <a (click)="deletePost(item.id)">Delete</a>
+          <a (click)="onEditItem(item.id)">{{"btn.edit" | translation | async}}</a>
+          <a (click)="deletePost(item.id)">{{"btn.delete" | translation | async}}</a>
         </div>
         <div class="status">
           <img [src]="getPhoto(item)" alt="About Image">

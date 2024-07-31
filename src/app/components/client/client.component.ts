@@ -11,6 +11,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ClientService, ClientResponse, DeleteClientRequest } from 'src/app/services/apis/client.service';
 import { CreateClientDialogComponent } from './create-client-dialog/create-client-dialog.component';
 import { UpdateClientDialogComponent } from './update-client-dialog/update-client-dialog.component';
+import { TranslationPipe } from 'src/app/services/translation.pipe';
 
 @Component({
   selector: 'app-client',
@@ -24,7 +25,8 @@ import { UpdateClientDialogComponent } from './update-client-dialog/update-clien
     MatIconModule,
     MatDividerModule,
     MatGridListModule,
-    CommonModule
+    CommonModule,
+    TranslationPipe
   ],
   templateUrl: './client.component.html',
   styleUrls: ['./client.component.scss']

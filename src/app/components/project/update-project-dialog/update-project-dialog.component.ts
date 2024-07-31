@@ -13,6 +13,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { CommonModule } from '@angular/common';
 import { ProjectResponse, ProjectService, UpdateProjectRequest } from 'src/app/services/apis/project.service';
+import { TranslationPipe } from 'src/app/services/translation.pipe';
 
 @Component({
   selector: 'app-update-project-dialog',
@@ -27,7 +28,8 @@ import { ProjectResponse, ProjectService, UpdateProjectRequest } from 'src/app/s
     MatDialogActions,
     MatDialogClose,
     ReactiveFormsModule,
-    CommonModule
+    CommonModule,
+    TranslationPipe
   ],
   templateUrl: './update-project-dialog.component.html',
   styleUrls: ['./update-project-dialog.component.scss']

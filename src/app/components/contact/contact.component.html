@@ -1,9 +1,9 @@
 <div class="body">
   <div class="container">
-    <h1>Contacts</h1>
+    <h1>{{"title.contact" | translation | async }}</h1>
     <div class="header">
         <div class="search-container">
-          <input type="text" placeholder="Search...">
+          <input type="text" [placeholder]="('placeholder.search' | translation | async)">
       </div>
         <!-- <button class="add-button">+ Create New</button> -->
     </div>
@@ -11,15 +11,15 @@
       <table>
         <thead>
             <tr>
-                <th>Name</th>
-                <th>Link or Value</th>
-                <th>Created At</th>
-                <th>Action</th>
+                <th>{{"table.header.name" | translation | async }}</th>
+                <th>{{"table.header.link-or-value" | translation | async }}</th>
+                <th>{{"table.header.created-at" | translation | async }}</th>
+                <th>{{"table.header.action" | translation | async }}</th>
             </tr>
         </thead>
         <tbody  *ngFor="let item of contacts">
           <tr>
-            <td>{{getEnumName(item.name)}}</td>
+            <td>{{ ('communication.' + getEnumName(item.name)) | translation | async }}</td>
             <td>{{item.link}}</td>
             <td>{{item.createdAt | date:'short'}}</td>
             <td>

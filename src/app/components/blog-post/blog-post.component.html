@@ -1,18 +1,18 @@
 <div class="body">
   <div class="container">
-    <h1>Home Slides</h1>
+    <h1>{{"title.blog" | translation | async}}</h1>
     <div class="header" [formGroup]="blogPostForm">
         <div class="search-container">
-          <input type="text" placeholder="Search..." formControlName="query">
+          <input type="text" [placeholder]="('placeholder.search' | translation | async)" formControlName="query">
       </div>
-        <button class="add-button" (click)="onCreateNewItem()">+ Create New</button>
+        <button class="add-button" (click)="onCreateNewItem()">{{"btn.create" | translation | async}}</button>
     </div>
     <div class="grid">
       <div class="card" *ngFor="let item of items">
         <button class="dots-button">⋮</button>
                 <div class="dropdown-content">
-                    <a (click)="onEditItem(item.id)">Edit</a>
-                    <a (click)="deletePost(item.id)">Delete</a>
+                    <a (click)="onEditItem(item.id)">{{"btn.edit" | translation | async}}</a>
+                    <a (click)="deletePost(item.id)">{{"btn.delete" | translation | async}}</a>
                 </div>
         <div class="status">
             <img [src]="getPhoto(item)" alt="Truck">

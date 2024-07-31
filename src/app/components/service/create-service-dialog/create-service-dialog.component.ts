@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -5,6 +6,7 @@ import { MatDialogActions, MatDialogClose, MatDialogContent, MatDialogRef, MatDi
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { CreateServiceRequest, ServicesService } from 'src/app/services/apis/services.service';
+import { TranslationPipe } from 'src/app/services/translation.pipe';
 
 @Component({
   selector: 'app-create-service-dialog',
@@ -19,7 +21,9 @@ import { CreateServiceRequest, ServicesService } from 'src/app/services/apis/ser
     MatDialogActions,
     MatDialogClose,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    CommonModule,
+    TranslationPipe
   ],
   templateUrl: './create-service-dialog.component.html',
   styleUrl: './create-service-dialog.component.scss'

@@ -31,7 +31,7 @@
       <!-- <input matInput formControlName="Userrole" /> -->
       <mat-select formControlName="Userrole" required>
         <mat-option *ngFor="let role of userRoles" [value]="role.id">
-          {{ role.name }}
+          {{ ('userrole.' + role.name) | translation | async }}
         </mat-option>
       </mat-select>
     </mat-form-field>
@@ -40,7 +40,7 @@
       <mat-label>{{"input.gender" | translation | async}}</mat-label>
       <mat-select formControlName="Gender" required>
         <mat-option *ngFor="let gender of genders" [value]="gender.id">
-          {{ gender.name }}
+          {{ ('gender.'+ gender.name) | translation | async }}
         </mat-option>
       </mat-select>
     </mat-form-field>

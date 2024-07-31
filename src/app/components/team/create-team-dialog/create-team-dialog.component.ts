@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { CreateTeamRequest, TeamService } from './../../../services/apis/team.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -14,6 +15,7 @@ import {
 } from '@angular/material/dialog';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import { TranslationPipe } from 'src/app/services/translation.pipe';
 
 @Component({
   selector: 'app-create-team-dialog',
@@ -28,7 +30,9 @@ import {MatInputModule} from '@angular/material/input';
     MatDialogActions,
     MatDialogClose,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    CommonModule,
+    TranslationPipe
   ],
   templateUrl: './create-team-dialog.component.html',
   styleUrl: './create-team-dialog.component.scss'

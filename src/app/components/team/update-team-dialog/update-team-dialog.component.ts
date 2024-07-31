@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
@@ -14,6 +15,7 @@ import {
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import { TeamService, UpdateTeamRequest } from 'src/app/services/apis/team.service';
+import { TranslationPipe } from 'src/app/services/translation.pipe';
 
 @Component({
   selector: 'app-update-team-dialog',
@@ -28,7 +30,9 @@ import { TeamService, UpdateTeamRequest } from 'src/app/services/apis/team.servi
     MatDialogActions,
     MatDialogClose,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    CommonModule,
+    TranslationPipe
   ],
   templateUrl: './update-team-dialog.component.html',
   styleUrl: './update-team-dialog.component.scss'

@@ -1,48 +1,48 @@
-<h2 mat-dialog-title>Update Home Post</h2>
+<h2 mat-dialog-title>{{"title.update-service" | translation | async}}</h2>
 <form [formGroup]="updateServiceForm" (ngSubmit)="onSubmit()">
   <mat-dialog-content>
     <mat-form-field>
-      <mat-label>Name (Uz)</mat-label>
+      <mat-label>{{"input.name-uz" | translation | async}}</mat-label>
       <input matInput formControlName="NameUz" />
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Name (En)</mat-label>
+      <mat-label>{{"input.name-en" | translation | async}}</mat-label>
       <input matInput formControlName="NameEn" />
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Name (Ru)</mat-label>
+      <mat-label>{{"input.name-ru" | translation | async}}</mat-label>
       <input matInput formControlName="NameRu" />
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Name (UzRu)</mat-label>
+      <mat-label>{{"input.name-uzru" | translation | async}}</mat-label>
       <input matInput formControlName="NameUzRu" />
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Description (Uz)</mat-label>
+      <mat-label>{{"input.description-uz" | translation | async}}</mat-label>
       <textarea matInput formControlName="DescriptionUz"></textarea>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Description (En)</mat-label>
+      <mat-label>{{"input.description-en" | translation | async}}</mat-label>
       <textarea matInput formControlName="DescriptionEn"></textarea>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Description (Ru)</mat-label>
+      <mat-label>{{"input.description-ru" | translation | async}}</mat-label>
       <textarea matInput formControlName="DescriptionRu"></textarea>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Description (UzRu)</mat-label>
+      <mat-label>{{"input.description-uzru" | translation | async}}</mat-label>
       <textarea matInput formControlName="DescriptionUzRu"></textarea>
     </mat-form-field>
   </mat-dialog-content>
   <mat-dialog-actions>
-    <button mat-button (click)="onNoClick()">Cancel</button>
-    <button mat-button type="submit" [disabled]="updateServiceForm.invalid" cdkFocusInitial>Save</button>
+    <button mat-button (click)="onNoClick()">{{"btn.cancel" | translation | async}}</button>
+    <button mat-button type="submit" [disabled]="updateServiceForm.invalid" cdkFocusInitial>{{"btn.save" | translation | async}}</button>
   </mat-dialog-actions>
 </form>

@@ -10,6 +10,7 @@ import { BlogPostComponent } from './blog-post/blog-post.component';
 import { HomeSlideComponent } from './home-slide/home-slide.component';
 import { ProjectComponent } from './project/project.component';
 import { ServiceComponent } from './service/service.component';
+import { TranslationPipe } from '../services/translation.pipe';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { ServiceComponent } from './service/service.component';
     BlogPostComponent,
     HomeSlideComponent,
     ProjectComponent,
-    ServiceComponent
+    ServiceComponent,
+    TranslationPipe
   ],
   exports: [
     UserComponent,

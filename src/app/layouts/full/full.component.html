@@ -65,7 +65,7 @@
         <img [src]="getPhoto()" class="rounded-circle" alt="img" style="height: 45px;width: 40px;margin:2px;">
         <mat-menu #profileMenu="matMenu" class="profile-dropdown">
           <div class="p-16 mb-4">
-            <button mat-menu-item class="fs-16" disabled>{{ (getEnumName() | translation) | async}}</button>
+            <button mat-menu-item class="fs-16" disabled>{{ (( 'userrole.'+getEnumName()) | translation) | async}}</button>
             <button mat-menu-item class="fs-16" (click)="clickSettings()">{{"btn.settings" | translation | async}}</button>
           </div>
           <hr>

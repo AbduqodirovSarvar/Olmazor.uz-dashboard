@@ -5,13 +5,15 @@ import { CommonModule } from '@angular/common';
 import { ContactService, ContactResponse, CreateContactRequest } from 'src/app/services/apis/contact.service';
 import { BaseApiService, EnumResponse } from 'src/app/services/apis/base.api.service';
 import { UpdateContactDialogComponent } from './update-contact-dialog/update-contact-dialog.component';
+import { TranslationPipe } from 'src/app/services/translation.pipe';
 
 @Component({
   selector: 'app-contact',
   standalone: true,
   imports: [
     ReactiveFormsModule,
-    CommonModule
+    CommonModule,
+    TranslationPipe
   ],
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss']

@@ -1,7 +1,7 @@
-<h2 mat-dialog-title>Update Home Post</h2>
+<h2 mat-dialog-title>{{"title.update-home-slide" | translation | async}}</h2>
 <form [formGroup]="homeSlideForm" (ngSubmit)="onSubmit()">
   <mat-dialog-content>
-    <div>
+    <!-- <div>
       <label for="file">Photo</label>
       <img
         src="../../../../assets/images/olmatech.jpg"
@@ -16,74 +16,74 @@
         id="file"
         (change)="onFileChange($event)"
       >
-    </div>
+    </div> -->
     <mat-form-field>
-      <mat-label>Title (Uz)</mat-label>
+      <mat-label>{{"input.title-uz" | translation | async}}</mat-label>
       <input matInput formControlName="TitleUz" />
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Title (En)</mat-label>
+      <mat-label>{{"input.title-en" | translation | async}}</mat-label>
       <input matInput formControlName="TitleEn" />
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Title (Ru)</mat-label>
+      <mat-label>{{"input.title-ru" | translation | async}}</mat-label>
       <input matInput formControlName="TitleRu" />
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Title (UzRu)</mat-label>
+      <mat-label>{{"input.title-uzru" | translation | async}}</mat-label>
       <input matInput formControlName="TitleUzRu" />
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Subtitle (Uz)</mat-label>
+      <mat-label>{{"input.subtitle-uz" | translation | async}}</mat-label>
       <input matInput formControlName="SubtitleUz" />
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Subtitle (En)</mat-label>
+      <mat-label>{{"input.subtitle-en" | translation | async}}</mat-label>
       <input matInput formControlName="SubtitleEn" />
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Subtitle (Ru)</mat-label>
+      <mat-label>{{"input.subtitle-ru" | translation | async}}</mat-label>
       <input matInput formControlName="SubtitleRu" />
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Subtitle (UzRu)</mat-label>
+      <mat-label>{{"input.subtitle-uzru" | translation | async}}</mat-label>
       <input matInput formControlName="SubtitleUzRu" />
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Description (Uz)</mat-label>
+      <mat-label>{{"input.description-uz" | translation | async}}</mat-label>
       <textarea matInput formControlName="DescriptionUz"></textarea>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Description (En)</mat-label>
+      <mat-label>{{"input.description-en" | translation | async}}</mat-label>
       <textarea matInput formControlName="DescriptionEn"></textarea>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Description (Ru)</mat-label>
+      <mat-label>{{"input.description-ru" | translation | async}}</mat-label>
       <textarea matInput formControlName="DescriptionRu"></textarea>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Description (UzRu)</mat-label>
+      <mat-label>{{"input.description-uzru" | translation | async}}</mat-label>
       <textarea matInput formControlName="DescriptionUzRu"></textarea>
     </mat-form-field>
     <div>
-      <label for="file">Photo: </label>
-      <button id="choose-file-button" type="button" mat-raised-button (click)="fileInput.click()">{{ selectedFileName || 'Choose File' }}</button>
+      <label for="file">{{"input.photo" | translation | async}}</label>
+      <button id="choose-file-button" type="button" mat-raised-button (click)="fileInput.click()">{{ selectedFileName || ("btn.choose-file" | translation | async) }}</button>
       <input hidden (change)="onFileChange($event)" #fileInput type="file" id="file" required>
     </div>
   </mat-dialog-content>
   <mat-dialog-actions>
-    <button mat-button (click)="onNoClick()">Cancel</button>
-    <button mat-button type="submit" [disabled]="homeSlideForm.invalid" cdkFocusInitial>Save</button>
+    <button mat-button (click)="onNoClick()">{{"btn.cancel" | translation | async}}</button>
+    <button mat-button type="submit" [disabled]="homeSlideForm.invalid" cdkFocusInitial>{{"btn.save" | translation | async}}</button>
   </mat-dialog-actions>
 </form>

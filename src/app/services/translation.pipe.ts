@@ -22,7 +22,6 @@ export class TranslationPipe implements PipeTransform {
         for (const key of keys) {
           translation = translation ? translation[key] : null;
         }
-        console.log("Translaet", translation);
         return translation ?? value;
       }),
       catchError(() => of(value))

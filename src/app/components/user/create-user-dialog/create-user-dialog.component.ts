@@ -15,6 +15,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { BaseApiService, EnumResponse } from 'src/app/services/apis/base.api.service';
 import { UserService, CreateUserRequest, UserResponse } from 'src/app/services/apis/user.service';
+import { TranslationPipe } from 'src/app/services/translation.pipe';
 
 @Component({
   selector: 'app-create-user-dialog',
@@ -31,7 +32,8 @@ import { UserService, CreateUserRequest, UserResponse } from 'src/app/services/a
     ReactiveFormsModule,
     FormsModule,
     CommonModule,
-    MatSelectModule
+    MatSelectModule,
+    TranslationPipe
   ],
   templateUrl: './create-user-dialog.component.html',
   styleUrls: ['./create-user-dialog.component.scss']

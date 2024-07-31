@@ -14,6 +14,8 @@ import {
 } from '@angular/material/dialog';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import { CommonModule } from '@angular/common';
+import { TranslationPipe } from 'src/app/services/translation.pipe';
 
 @Component({
   selector: 'app-create-dialog',
@@ -28,7 +30,9 @@ import {MatInputModule} from '@angular/material/input';
     MatDialogActions,
     MatDialogClose,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    CommonModule,
+    TranslationPipe
   ],
   templateUrl: './create-dialog.component.html',
   styleUrl: './create-dialog.component.scss'

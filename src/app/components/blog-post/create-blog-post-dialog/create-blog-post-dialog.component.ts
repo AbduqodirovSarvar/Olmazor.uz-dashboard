@@ -13,6 +13,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BaseApiService } from 'src/app/services/apis/base.api.service';
+import { TranslationPipe } from 'src/app/services/translation.pipe';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-create-blog-post-dialog',
@@ -28,6 +30,8 @@ import { BaseApiService } from 'src/app/services/apis/base.api.service';
     MatDialogClose,
     ReactiveFormsModule,
     FormsModule,
+    CommonModule,
+    TranslationPipe
   ],
   templateUrl: './create-blog-post-dialog.component.html',
   styleUrl: './create-blog-post-dialog.component.scss'

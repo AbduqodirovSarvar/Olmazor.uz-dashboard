@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateDialogComponent } from './create-dialog/create-dialog.component';
 import { UpdateDialogComponent } from './update-dialog/update-dialog.component';
+import { TranslationPipe } from 'src/app/services/translation.pipe';
 
 @Component({
   selector: 'app-home-slide',
@@ -24,7 +25,8 @@ import { UpdateDialogComponent } from './update-dialog/update-dialog.component';
     MatIconModule,
     MatDividerModule,
     MatGridListModule,
-    CommonModule
+    CommonModule,
+    TranslationPipe
   ],
   templateUrl: './home-slide.component.html',
   styleUrls: ['./home-slide.component.scss']

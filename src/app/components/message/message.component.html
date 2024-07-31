@@ -1,23 +1,23 @@
 <div class="body">
   <div class="container">
-    <h2>Messages</h2>
+    <h2>{{"title.message" | translation | async }}</h2>
     <div class="header" [formGroup]="messageForm">
       <div class="search-container">
-        <input type="text" placeholder="Search..." formControlName="query">
+        <input type="text" [placeholder]="('placeholder.search' | translation | async )" formControlName="query">
       </div>
-      <button class="add-employee-btn" (click)="markAllAsRead()">Mark all as read</button>
+      <button class="add-employee-btn" (click)="markAllAsRead()">{{"btn.mask-all-read" | translation | async }}</button>
     </div>
     <div class="table-responsive-xl">
       <table>
         <thead>
           <tr>
-            <th>Fullname</th>
-            <th>Email</th>
-            <th>Subject</th>
-            <th>Message</th>
-            <th>Date</th>
-            <th>Is Seen</th>
-            <th>Action</th>
+            <th>{{"table.header.fullname" | translation | async }}</th>
+            <th>{{"table.header.email" | translation | async }}</th>
+            <th>{{"table.header.subject" | translation | async }}</th>
+            <th>{{"table.header.message" | translation | async }}</th>
+            <th>{{"table.header.created-at" | translation | async }}</th>
+            <th>{{"table.header.is-seen" | translation | async }}</th>
+            <th>{{"table.header.action" | translation | async }}</th>
           </tr>
         </thead>
         <tbody>

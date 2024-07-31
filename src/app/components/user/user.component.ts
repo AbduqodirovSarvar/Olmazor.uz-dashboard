@@ -7,13 +7,15 @@ import { UpdateUserDialogComponent } from './update-user-dialog/update-user-dial
 import { CommonModule } from '@angular/common';
 import { HelperService } from 'src/app/services/helper.service';
 import { BaseApiService, EnumResponse } from 'src/app/services/apis/base.api.service';
+import { TranslationPipe } from 'src/app/services/translation.pipe';
 
 @Component({
   selector: 'app-user',
   standalone: true,
   imports: [
     ReactiveFormsModule,
-    CommonModule
+    CommonModule,
+    TranslationPipe
   ],
   templateUrl: './user.component.html',
   styleUrl: './user.component.scss'

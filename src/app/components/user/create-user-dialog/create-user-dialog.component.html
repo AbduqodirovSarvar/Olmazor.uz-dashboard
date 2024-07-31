@@ -1,67 +1,97 @@
-<h2 mat-dialog-title>Create User</h2>
+<h2 mat-dialog-title>{{"title.create-user" | translation | async}}</h2>
 <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
   <mat-dialog-content>
     <mat-form-field>
-      <mat-label>Firstname</mat-label>
+      <mat-label>{{"input.firstname-en" | translation | async}}</mat-label>
       <input matInput formControlName="Firstname" required />
+      <mat-error>
+        {{"error.required" | translation | async}}
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Firstname (Ru)</mat-label>
+      <mat-label>{{"input.firstname-ru" | translation | async}}</mat-label>
       <input matInput formControlName="FirstnameRu" />
+      <mat-error>
+        {{"error.required" | translation | async}}
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Lastname</mat-label>
+      <mat-label>{{"input.lastname-en" | translation | async}}</mat-label>
       <input matInput formControlName="Lastname" required />
+      <mat-error>
+        {{"error.required" | translation | async}}
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Lastname (Ru)</mat-label>
+      <mat-label>{{"input.lastname-ru" | translation | async}}</mat-label>
       <input matInput formControlName="LastnameRu" />
+      <mat-error>
+        {{"error.required" | translation | async}}
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Phone</mat-label>
+      <mat-label>{{"input.phone" | translation | async}}</mat-label>
       <input matInput formControlName="Phone" />
+      <mat-error>
+        {{"error.required" | translation | async}}
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>User Role</mat-label>
+      <mat-label>{{"input.userrole" | translation | async}}</mat-label>
       <mat-select formControlName="Userrole" required>
         <mat-option *ngFor="let role of userRoles" [value]="role.id">
           {{ role.name }}
         </mat-option>
       </mat-select>
+      <mat-error>
+        {{"error.required" | translation | async}}
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Gender</mat-label>
+      <mat-label>{{"input.gender" | translation | async}}</mat-label>
       <mat-select formControlName="Gender" required>
         <mat-option *ngFor="let gender of genders" [value]="gender.id">
           {{ gender.name }}
         </mat-option>
       </mat-select>
+      <mat-error>
+        {{"error.required" | translation | async}}
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Email</mat-label>
+      <mat-label>{{"input.email" | translation | async}}</mat-label>
       <input matInput formControlName="Email" required email />
+      <mat-error>
+        {{"error.required" | translation | async}}
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Password</mat-label>
+      <mat-label>{{"input.password" | translation | async}}</mat-label>
       <input matInput formControlName="Password" type="password" required />
+      <mat-error>
+        {{"error.required" | translation | async}}
+      </mat-error>
     </mat-form-field>
 
     <div>
-      <label for="file">Photo</label>
-      <button id="choose-file-button" type="button" mat-raised-button (click)="fileInput.click()">{{ selectedFileName || 'Choose File' }}</button>
+      <label for="file">{{"input.photo" | translation | async}}</label>
+      <button id="choose-file-button" type="button" mat-raised-button (click)="fileInput.click()">{{ selectedFileName || ("btn.choose-file" | translation | async) }}</button>
       <input hidden (change)="onFileChange($event)" #fileInput type="file" id="file" required>
+      <mat-error>
+        {{"error.required" | translation | async}}
+      </mat-error>
     </div>
   </mat-dialog-content>
   <mat-dialog-actions>
-    <button mat-button (click)="onNoClick()">Cancel</button>
-    <button mat-button type="submit" [disabled]="userForm.invalid" cdkFocusInitial>Add</button>
+    <button mat-button (click)="onNoClick()">{{"btn.cancel" | translation | async}}</button>
+    <button mat-button type="submit" [disabled]="userForm.invalid" cdkFocusInitial>{{"btn.add" | translation | async}}</button>
   </mat-dialog-actions>
 </form>

@@ -1,79 +1,121 @@
-<h2 mat-dialog-title>Create Team Member</h2>
+<h2 mat-dialog-title>{{"title.create-team" | translation | async}}</h2>
 <form [formGroup]="teamForm" (ngSubmit)="onSubmit()">
   <mat-dialog-content>
     <mat-form-field>
-      <mat-label>Firstname</mat-label>
+      <mat-label>{{"input.firstname-en" | translation | async}}</mat-label>
       <input matInput formControlName="Firstname" required />
+      <mat-error>
+        {{"error.required" | translation | async}}
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Firstname (Ru)</mat-label>
+      <mat-label>{{"input.firstname-ru" | translation | async}}</mat-label>
       <input matInput formControlName="FirstnameRu" required />
+      <mat-error>
+        {{"error.required" | translation | async}}
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Lastname</mat-label>
+      <mat-label>{{"input.lastname-en" | translation | async}}</mat-label>
       <input matInput formControlName="Lastname" required />
+      <mat-error>
+        {{"error.required" | translation | async}}
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Lastname (Ru)</mat-label>
+      <mat-label>{{"input.lastname-ru" | translation | async}}</mat-label>
       <input matInput formControlName="LastnameRu" required />
+      <mat-error>
+        {{"error.required" | translation | async}}
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Phone</mat-label>
+      <mat-label>{{"input.phone" | translation | async}}</mat-label>
       <input matInput formControlName="Phone" required />
+      <mat-error>
+        {{"error.required" | translation | async}}
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Position (Uz)</mat-label>
+      <mat-label>{{"input.position-uz" | translation | async}}</mat-label>
       <input matInput formControlName="PositionUz" required />
+      <mat-error>
+        {{"error.required" | translation | async}}
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Position (En)</mat-label>
+      <mat-label>{{"input.position-en" | translation | async}}</mat-label>
       <input matInput formControlName="PositionEn" required />
+      <mat-error>
+        {{"error.required" | translation | async}}
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Position (Ru)</mat-label>
+      <mat-label>{{"input.position-ru" | translation | async}}</mat-label>
       <input matInput formControlName="PositionRu" required />
+      <mat-error>
+        {{"error.required" | translation | async}}
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Position (UzRu)</mat-label>
+      <mat-label>{{"input.position-uzru" | translation | async}}</mat-label>
       <input matInput formControlName="PositionUzRu" required />
+      <mat-error>
+        {{"error.required" | translation | async}}
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Telegram</mat-label>
+      <mat-label>{{"input.telegram" | translation | async}}</mat-label>
       <input matInput formControlName="Telegram" />
+      <mat-error>
+        {{"error.required" | translation | async}}
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Instagram</mat-label>
+      <mat-label>{{"input.instagram" | translation | async}}</mat-label>
       <input matInput formControlName="Instagram" />
+      <mat-error>
+        {{"error.required" | translation | async}}
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Twitter</mat-label>
+      <mat-label>{{"input.twitter" | translation | async}}</mat-label>
       <input matInput formControlName="Twitter"/>
+      <mat-error>
+        {{"error.required" | translation | async}}
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Email</mat-label>
+      <mat-label>{{"input.email" | translation | async}}</mat-label>
       <input matInput formControlName="Email" />
+      <mat-error>
+        {{"error.required" | translation | async}}
+      </mat-error>
     </mat-form-field>
 
     <div>
-      <label for="file">Photo</label>
-      <button id="choose-file-button" type="button" mat-raised-button (click)="fileInput.click()">{{ selectedFileName || 'Choose File' }}</button>
+      <label for="file">{{"input.photo" | translation | async}}</label>
+      <button id="choose-file-button" type="button" mat-raised-button (click)="fileInput.click()">{{ selectedFileName || ("btn.choose-file" | translation | async) }}</button>
       <input hidden (change)="onFileChange($event)" #fileInput type="file" id="file" required>
+      <mat-error>
+        {{"error.required" | translation | async}}
+      </mat-error>
     </div>
   </mat-dialog-content>
   <mat-dialog-actions>
-    <button mat-button (click)="onNoClick()">Cancel</button>
-    <button mat-button type="submit" [disabled]="teamForm.invalid" cdkFocusInitial>Add</button>
+    <button mat-button (click)="onNoClick()">{{"btn.cancel" | translation | async}}</button>
+    <button mat-button type="submit" [disabled]="teamForm.invalid" cdkFocusInitial>{{"btn.add" | translation | async}}</button>
   </mat-dialog-actions>
 </form>

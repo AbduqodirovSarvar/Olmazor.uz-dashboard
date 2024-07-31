@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -5,6 +6,7 @@ import { MatDialogRef, MatDialogTitle, MatDialogContent, MatDialogActions } from
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ClientService, CreateClientRequest } from 'src/app/services/apis/client.service';
+import { TranslationPipe } from 'src/app/services/translation.pipe';
 
 @Component({
   selector: 'app-create-client-dialog',
@@ -17,7 +19,9 @@ import { ClientService, CreateClientRequest } from 'src/app/services/apis/client
     MatDialogTitle,
     MatDialogContent,
     MatDialogActions,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CommonModule,
+    TranslationPipe
   ],
   templateUrl: './create-client-dialog.component.html',
   styleUrls: ['./create-client-dialog.component.scss']

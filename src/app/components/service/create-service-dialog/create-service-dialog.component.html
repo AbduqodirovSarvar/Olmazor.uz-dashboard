@@ -1,72 +1,72 @@
-<h2 mat-dialog-title>Create Home Post</h2>
+<h2 mat-dialog-title>{{"title.service" | translation | async}}</h2>
 <form [formGroup]="createServiceForm" (ngSubmit)="onSubmit()">
   <mat-dialog-content>
     <mat-form-field>
-      <mat-label>Name (Uz)</mat-label>
+      <mat-label>{{"input.name-uz" | translation | async}}</mat-label>
       <input matInput formControlName="NameUz" required />
       <mat-error>
-        Name (Uz) is required.
+        {{"error.required" | translation | async}}
       </mat-error>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Name (En)</mat-label>
+      <mat-label>{{"input.name-en" | translation | async}}</mat-label>
       <input matInput formControlName="NameEn" required />
       <mat-error>
-        Name (En) is required.
+        {{"error.required" | translation | async}}
       </mat-error>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Name (Ru)</mat-label>
+      <mat-label>{{"input.name-ru" | translation | async}}</mat-label>
       <input matInput formControlName="NameRu" required />
       <mat-error>
-        Name (Ru) is required.
+        {{"error.required" | translation | async}}
       </mat-error>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Name (UzRu)</mat-label>
+      <mat-label>{{"input.name-uzru" | translation | async}}</mat-label>
       <input matInput formControlName="NameUzRu" required />
       <mat-error>
-        Name (UzRu) is required.
+        {{"error.required" | translation | async}}
       </mat-error>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Description (Uz)</mat-label>
+      <mat-label>{{"input.description-uz" | translation | async}}</mat-label>
       <textarea matInput formControlName="DescriptionUz" required></textarea>
       <mat-error>
-        Description (Uz) is required.
+        {{"error.required" | translation | async}}
       </mat-error>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Description (En)</mat-label>
+      <mat-label>{{"input.description-en" | translation | async}}</mat-label>
       <textarea matInput formControlName="DescriptionEn" required></textarea>
       <mat-error>
-        Description (En) is required.
+        {{"error.required" | translation | async}}
       </mat-error>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Description (Ru)</mat-label>
+      <mat-label>{{"input.description-ru" | translation | async}}</mat-label>
       <textarea matInput formControlName="DescriptionRu" required></textarea>
       <mat-error>
-        Description (Ru) is required.
+        {{"error.required" | translation | async}}
       </mat-error>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Description (UzRu)</mat-label>
+      <mat-label>{{"input.description-uzru" | translation | async}}</mat-label>
       <textarea matInput formControlName="DescriptionUzRu" required></textarea>
       <mat-error>
-        Description (UzRu) is required.
+        {{"error.required" | translation | async}}
       </mat-error>
     </mat-form-field>
   </mat-dialog-content>
   <mat-dialog-actions>
-    <button mat-button (click)="onNoClick()">Cancel</button>
-    <button mat-button type="submit" [disabled]="createServiceForm.invalid" cdkFocusInitial>Add</button>
+    <button mat-button (click)="onNoClick()">{{"btn.cancel" | translation | async}}</button>
+    <button mat-button type="submit" [disabled]="createServiceForm.invalid" cdkFocusInitial>{{"btn.add" | translation | async}}</button>
   </mat-dialog-actions>
 </form>

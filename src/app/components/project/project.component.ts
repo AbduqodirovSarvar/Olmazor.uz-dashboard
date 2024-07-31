@@ -11,6 +11,7 @@ import { ProjectService, ProjectResponse, CreateProjectRequest } from 'src/app/s
 import { CommonModule } from '@angular/common';
 import { CreateProjectDialogComponent } from './create-project-dialog/create-project-dialog.component';
 import { UpdateProjectDialogComponent } from './update-project-dialog/update-project-dialog.component';
+import { TranslationPipe } from 'src/app/services/translation.pipe';
 
 @Component({
   selector: 'app-project',
@@ -24,7 +25,8 @@ import { UpdateProjectDialogComponent } from './update-project-dialog/update-pro
     MatIconModule,
     MatDividerModule,
     MatGridListModule,
-    CommonModule
+    CommonModule,
+    TranslationPipe
   ],
   templateUrl: './project.component.html',
   styleUrls: ['./project.component.scss']

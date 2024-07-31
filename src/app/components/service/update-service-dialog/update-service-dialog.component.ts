@@ -6,6 +6,7 @@ import { MAT_DIALOG_DATA, MatDialogActions, MatDialogClose, MatDialogContent, Ma
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ServicesService, UpdateServiceRequest } from 'src/app/services/apis/services.service';
+import { TranslationPipe } from 'src/app/services/translation.pipe';
 
 @Component({
   selector: 'app-update-service-dialog',
@@ -25,7 +26,8 @@ import { ServicesService, UpdateServiceRequest } from 'src/app/services/apis/ser
     MatInputModule,
     ReactiveFormsModule,
     MatButtonModule,
-    CommonModule
+    CommonModule,
+    TranslationPipe
   ],
   templateUrl: './update-service-dialog.component.html',
   styleUrl: './update-service-dialog.component.scss'

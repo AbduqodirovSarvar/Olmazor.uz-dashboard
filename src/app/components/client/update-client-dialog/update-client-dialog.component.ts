@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -11,6 +12,7 @@ import {
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ClientService, UpdateClientRequest } from 'src/app/services/apis/client.service';
+import { TranslationPipe } from 'src/app/services/translation.pipe';
 
 @Component({
   selector: 'app-update-client-dialog',
@@ -23,7 +25,9 @@ import { ClientService, UpdateClientRequest } from 'src/app/services/apis/client
     MatDialogTitle,
     MatDialogContent,
     MatDialogActions,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CommonModule,
+    TranslationPipe
   ],
   templateUrl: './update-client-dialog.component.html',
   styleUrls: ['./update-client-dialog.component.scss']

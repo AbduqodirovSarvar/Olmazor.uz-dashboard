@@ -12,6 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { UpdateServiceDialogComponent } from './update-service-dialog/update-service-dialog.component';
+import { TranslationPipe } from 'src/app/services/translation.pipe';
 
 @Component({
   selector: 'app-service',
@@ -25,7 +26,8 @@ import { UpdateServiceDialogComponent } from './update-service-dialog/update-ser
     MatIconModule,
     MatDividerModule,
     MatGridListModule,
-    CommonModule
+    CommonModule,
+    TranslationPipe
   ],
   templateUrl: './service.component.html',
   styleUrl: './service.component.scss'

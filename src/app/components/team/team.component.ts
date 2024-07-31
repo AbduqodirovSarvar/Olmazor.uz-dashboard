@@ -11,6 +11,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DeleteTeamRequest, TeamResponse, TeamService } from 'src/app/services/apis/team.service';
 import { CreateTeamDialogComponent } from './create-team-dialog/create-team-dialog.component';
 import { UpdateTeamDialogComponent } from './update-team-dialog/update-team-dialog.component';
+import { TranslationPipe } from 'src/app/services/translation.pipe';
 
 @Component({
   selector: 'app-team',
@@ -24,7 +25,8 @@ import { UpdateTeamDialogComponent } from './update-team-dialog/update-team-dial
     MatIconModule,
     MatDividerModule,
     MatGridListModule,
-    CommonModule
+    CommonModule,
+    TranslationPipe
   ],
   templateUrl: './team.component.html',
   styleUrls: ['./team.component.scss']

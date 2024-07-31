@@ -7,6 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { BaseApiService, EnumResponse } from 'src/app/services/apis/base.api.service';
 import { ContactResponse, ContactService } from 'src/app/services/apis/contact.service';
+import { TranslationPipe } from 'src/app/services/translation.pipe';
 
 @Component({
   selector: 'app-update-contact-dialog',
@@ -18,6 +19,7 @@ import { ContactResponse, ContactService } from 'src/app/services/apis/contact.s
     ReactiveFormsModule,
     MatDialogModule,
     CommonModule,
+    TranslationPipe
   ],
   templateUrl: './update-contact-dialog.component.html',
   styleUrls: ['./update-contact-dialog.component.scss']

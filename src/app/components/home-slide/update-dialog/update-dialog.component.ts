@@ -14,6 +14,7 @@ import {
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { CommonModule } from '@angular/common';
+import { TranslationPipe } from 'src/app/services/translation.pipe';
 
 @Component({
   selector: 'app-update-dialog',
@@ -33,7 +34,8 @@ import { CommonModule } from '@angular/common';
     MatInputModule,
     ReactiveFormsModule,
     MatButtonModule,
-    CommonModule
+    CommonModule,
+    TranslationPipe
   ],
   templateUrl: './update-dialog.component.html',
   styleUrl: './update-dialog.component.scss'

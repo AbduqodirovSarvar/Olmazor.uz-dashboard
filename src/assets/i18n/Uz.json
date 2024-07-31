@@ -26,6 +26,33 @@
   "Admin": "Admin",
   "SuperAdmin": "SuperAdmin"
   },
+  "communication" : {
+    "None": "Hech qaysi",
+    "Phone": "Telefon",
+    "Email": "Email",
+    "Telegram": "Telegram",
+    "Instagram": "Instagram",
+    "Facebook": "Facebook",
+    "Twitter": "Twitter",
+    "Github": "Github",
+    "Website": "Veb-sayt"
+  },
+  "table": {
+    "header": {
+      "id": "ID",
+      "name": "Nomi",
+      "description": "Tavsif",
+      "created-at": "Yaratilgan Vaqt",
+      "action": "Harakatlar",
+      "link-or-value": "Havola yoki Qiymat",
+      "fullname": "To'liq Ism",
+      "email": "Email",
+      "subject": "Mavzu",
+      "message": "Xabar",
+      "is-seen": "Xabar Ko'rildimi?",
+      "gender": "Jinsi"
+    }
+  },
   "input": {
     "address-uz": "Manzil (O'zbek)",
     "address-ru": "Manzil (Ruscha)",
@@ -62,6 +89,7 @@
     "position-uz": "Lavozim (O'zbek)",
     "position-uzru": "Lavozim (O'zbek kirill)",
     "none": "Yo'q",
+    "telegram": "Telegram",
     "email": "Elektron pochta",
     "phone": "Telefon",
     "instagram": "Instagram",
@@ -75,6 +103,7 @@
     "comment-ru": "Izoh (Ruscha)",
     "comment-uz": "Izoh (O'zbek)",
     "comment-uzru": "Izoh (O'zbek kirill)",
+    "password": "Parol",
     "new-password": "Yangi parol",
     "confirm-new-password": "Yangi parolni tasdiqlang",
     "old-password": "Eski parol",
@@ -103,13 +132,17 @@
     "blog": "Bloglar",
     "create-blog": "Yangi blog yaratish",
     "update-blog": "Blog ma'lumotlarini yangilash",
+    "contact": "Aloqalar",
+    "create-contact": "Yangi Aloqa Yaratish",
+    "update-contact": "Aloqa Ma'lumotlarini Yangilash",
     "message": "Xabarlar",
     "user": "Foydalanuvchilar",
     "create-user": "Yangi foydalanuvchi yaratish",
     "update-user": "Foydalanuvchi ma'lumotlarini yangilash"
   },
   "placeholder": {
-    "search": "Qidirish..."
+    "search": "Qidirish...",
+    "is-changing-password": "Agar parolni o'zgartirmasangiz, bu maydonni bo'sh qoldiring!"
   },
   "btn": {
     "submit": "Yuborish",
@@ -124,5 +157,18 @@
     "settings": "Sozlamalar",
     "logout": "Chiqish",
     "choose-file": "Fayl tanlang"
+  },
+  "error": {
+  "required": "Bu maydon to'ldirilishi shart.",
+  "min-length": "Bu maydon uzunligi kamida {0} ta belgidan iborat bo'lishi kerak.",
+  "max-length": "Bu maydon uzunligi {0} ta belgidan oshmasligi kerak.",
+  "email": "Iltimos, to'g'ri elektron pochta manzilini kiriting.",
+  "phone": "Iltimos, to'g'ri telefon raqamini kiriting.",
+  "url": "Iltimos, to'g'ri URL manzilini kiriting.",
+  "date": "Iltimos, to'g'ri sanani kiriting.",
+  "number": "Iltimos, to'g'ri raqam kiriting.",
+  "integer": "Iltimos, to'g'ri butun son kiriting.",
+  "decimal": "Iltimos, to'g'ri o'nlik raqam kiriting.",
+  "pattern": "Bu maydon talab qilinadigan andozaga mos emas."
   }
 }

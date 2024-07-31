@@ -26,6 +26,33 @@
   "Admin": "Admin",
   "SuperAdmin": "SuperAdmin"
   },
+  "communication" :{
+    "None": "None",
+    "Phone": "Phone",
+    "Email": "Email",
+    "Telegram": "Telegram",
+    "Instagram": "Instagram",
+    "Facebook": "Facebook",
+    "Twitter": "Twitter",
+    "Github": "Github",
+    "Website": "Website"
+  },
+  "table":{
+    "header": {
+      "id": "ID",
+      "name": "Name",
+      "description": "Description",
+      "created-at": "Created At",
+      "action": "Actions",
+      "link-or-value": "Link or Value",
+      "fullname": "Full Name",
+      "email": "Email",
+      "subject": "Subject",
+      "message": "Message",
+      "is-seen": "Is Message Seen?",
+      "gender": "Gender"
+    }
+  },
   "input":{
     "address-uz": "Address (Uzbek)",
     "address-ru": "Address (Russian)",
@@ -62,6 +89,7 @@
     "position-uz": "Position (Uzbek)",
     "position-uzru": "Position (Uzbek Cyrillic)",
     "none": "None",
+    "telegram": "Telegram",
     "email": "Email",
     "phone": "Phone",
     "instagram": "Instagram",
@@ -75,6 +103,7 @@
     "comment-ru": "Comment (Russian)",
     "comment-uz": "Comment (Uzbek)",
     "comment-uzru": "Comment (Uzbek Cyrillic)",
+    "password": "Password",
     "new-password": "New Password",
     "confirm-new-password": "Confirm New Password",
     "old-password": "Old Password",
@@ -103,13 +132,17 @@
     "blog": "Blogs",
     "create-blog": "Create New Blog",
     "update-blog": "Update Blog Informations",
+    "contact": "Contacts",
+    "create-contact": "Create New Contact",
+    "update-contact": "Update Contact Informations",
     "message": "Messages",
     "user": "Users",
     "create-user": "Create New User",
     "update-user": "Update User Informations"
   },
   "placeholder":{
-    "search": "Search..."
+    "search": "Search...",
+    "is-changing-password": "If you don't change the password, leave this empty!"
   },
   "btn":{
     "submit": "Submit",
@@ -124,5 +157,18 @@
     "settings": "Settings",
     "logout": "Logout",
     "choose-file": "Choose File"
+  },
+  "error": {
+    "required": "This field is required.",
+    "min-length": "This field must be at least {0} characters long.",
+    "max-length": "This field cannot exceed {0} characters.",
+    "email": "Please enter a valid email address.",
+    "phone": "Please enter a valid phone number.",
+    "url": "Please enter a valid URL.",
+    "date": "Please enter a valid date.",
+    "number": "Please enter a valid number.",
+    "integer": "Please enter a valid integer.",
+    "decimal": "Please enter a valid decimal number.",
+    "pattern": "This field does not match the required pattern."
   }
 }

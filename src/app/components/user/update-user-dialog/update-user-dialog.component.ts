@@ -9,6 +9,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon'; // Add MatIconModule
 import { BaseApiService, EnumResponse } from 'src/app/services/apis/base.api.service';
 import { UserService, UpdateUserRequest, UserResponse } from 'src/app/services/apis/user.service';
+import { TranslationPipe } from 'src/app/services/translation.pipe';
 
 @Component({
   selector: 'app-update-user-dialog',
@@ -21,7 +22,9 @@ import { UserService, UpdateUserRequest, UserResponse } from 'src/app/services/a
     ReactiveFormsModule,
     MatButtonModule,
     MatSelectModule,
-    MatIconModule // Add MatIconModule
+    MatIconModule,
+    CommonModule,
+    TranslationPipe
   ],
   templateUrl: './update-user-dialog.component.html',
   styleUrls: ['./update-user-dialog.component.scss']

@@ -3,13 +3,15 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 import { MessageResponse, MessageService, UpdateMessageRequest } from 'src/app/services/apis/message.service';
+import { TranslationPipe } from 'src/app/services/translation.pipe';
 
 @Component({
   selector: 'app-message',
   standalone: true,
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TranslationPipe
   ],
   templateUrl: './message.component.html',
   styleUrls: ['./message.component.scss']

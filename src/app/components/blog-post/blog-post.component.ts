@@ -19,6 +19,7 @@ import {MatInputModule} from '@angular/material/input';
 import { BlogPostResponse, BlogService, DeleteBlogPostCommand } from 'src/app/services/apis/blog.service';
 import { UpdateBlogPostDialogComponent } from './update-blog-post-dialog/update-blog-post-dialog.component';
 import { CreateBlogPostDialogComponent } from './create-blog-post-dialog/create-blog-post-dialog.component';
+import { TranslationPipe } from 'src/app/services/translation.pipe';
 
 @Component({
   selector: 'app-blog-post',
@@ -32,7 +33,8 @@ import { CreateBlogPostDialogComponent } from './create-blog-post-dialog/create-
     MatIconModule,
     MatDividerModule,
     MatGridListModule,
-    CommonModule
+    CommonModule,
+    TranslationPipe
   ],
   templateUrl: './blog-post.component.html',
   styleUrl: './blog-post.component.scss'

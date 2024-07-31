@@ -1,79 +1,79 @@
-<h2 mat-dialog-title>Create Client</h2>
+<h2 mat-dialog-title>{{"title.create-client" | translation | async}}</h2>
 <form [formGroup]="clientForm" (ngSubmit)="onSubmit()">
   <mat-dialog-content>
     <mat-form-field>
-      <mat-label>Firstname</mat-label>
+      <mat-label>{{"input.firstname-en" | translation | async}}</mat-label>
       <input matInput formControlName="Firstname" required />
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Firstname (Ru)</mat-label>
+      <mat-label>{{"input.firstname-ru" | translation | async}}</mat-label>
       <input matInput formControlName="FirstnameRu" />
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Lastname</mat-label>
+      <mat-label>{{"input.lastname-en" | translation | async}}</mat-label>
       <input matInput formControlName="Lastname" required />
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Lastname (Ru)</mat-label>
+      <mat-label>{{"input.lastname-ru" | translation | async}}</mat-label>
       <input matInput formControlName="LastnameRu" />
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Phone</mat-label>
+      <mat-label>{{"input.phone" | translation | async}}</mat-label>
       <input matInput formControlName="Phone" required />
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Position (Uz)</mat-label>
+      <mat-label>{{"input.position-uz" | translation | async}}</mat-label>
       <input matInput formControlName="PositionUz" />
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Position (En)</mat-label>
+      <mat-label>{{"input.position-en" | translation | async}}</mat-label>
       <input matInput formControlName="PositionEn" />
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Position (Ru)</mat-label>
+      <mat-label>{{"input.position-ru" | translation | async}}</mat-label>
       <input matInput formControlName="PositionRu" />
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Position (UzRu)</mat-label>
+      <mat-label>{{"input.position-uzru" | translation | async}}</mat-label>
       <input matInput formControlName="PositionUzRu" />
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Comment (Uz)</mat-label>
+      <mat-label>{{"input.comment-uz" | translation | async}}</mat-label>
       <input matInput formControlName="CommentUz" />
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Comment (En)</mat-label>
+      <mat-label>{{"input.comment-en" | translation | async}}</mat-label>
       <input matInput formControlName="CommentEn" />
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Comment (Ru)</mat-label>
+      <mat-label>{{"input.comment-ru" | translation | async}}</mat-label>
       <input matInput formControlName="CommentRu" />
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Comment (UzRu)</mat-label>
+      <mat-label>{{"input.comment-uzru" | translation | async}}</mat-label>
       <input matInput formControlName="CommentUzRu" />
     </mat-form-field>
 
     <div>
-      <label for="file">Photo</label>
-      <button id="choose-file-button" type="button" mat-raised-button (click)="fileInput.click()">{{ selectedFileName || 'Choose File' }}</button>
+      <label for="file">{{"input.photo" | translation | async}}</label>
+      <button id="choose-file-button" type="button" mat-raised-button (click)="fileInput.click()">{{ selectedFileName || ("btn.choose-file" | translation | async) }}</button>
       <input hidden (change)="onFileChange($event)" #fileInput type="file" id="file">
     </div>
   </mat-dialog-content>
   <mat-dialog-actions>
-    <button mat-button (click)="onNoClick()">Cancel</button>
-    <button mat-button type="submit" [disabled]="clientForm.invalid" cdkFocusInitial>Save</button>
+    <button mat-button (click)="onNoClick()">{{"btn.cancel" | translation | async}}</button>
+    <button mat-button type="submit" [disabled]="clientForm.invalid" cdkFocusInitial>{{"btn.add" | translation | async}}</button>
   </mat-dialog-actions>
 </form>
